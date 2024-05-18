@@ -43,7 +43,7 @@ dev_dependencies:
   riverpod_generator: ^2.3.8
   very_good_analysis: 4.0.0+1
   rename: ^3.0.2
-  flutter_launcher_icons:
+  flutter_launcher_icons: ^0.13.1
 
 ## Install derry from https://pub.dev/packages/derry and run derry build, derry watch, derry gen
 scripts: derry.yaml
