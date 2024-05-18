@@ -1,4 +1,4 @@
-package com.example.verygoodcore.flutter_boilerplate
+package com.tetsukick.bintango.indonesian.translater.web
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-import 'package:flutter_boilerplate/feature/home/state/home_state.dart';
+import 'package:bintango_indonesian_translater/feature/home/state/home_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_provider.g.dart';

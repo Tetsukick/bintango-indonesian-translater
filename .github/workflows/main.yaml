@@ -1,4 +1,4 @@
-name: flutter_boilerplate
+name: bintango_indonesian_translater
 
 on: [pull_request, push]
 

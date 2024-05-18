@@ -131,3 +131,4 @@ lib/generated/intl/messages_all.dart
 
 *.aab
 .idea/dictionaries/sadmansamee.xml
+firebase_options.dart

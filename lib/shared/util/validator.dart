@@ -1,4 +1,4 @@
-import 'package:flutter_boilerplate/shared/util/email_validator.dart';
+import 'package:bintango_indonesian_translater/shared/util/email_validator.dart';
 
 class Validator {
   static bool isValidEmail(String? value) {

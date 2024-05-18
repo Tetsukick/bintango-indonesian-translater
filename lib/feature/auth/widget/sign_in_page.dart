@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
-import 'package:flutter_boilerplate/shared/route/app_router.dart';
+import 'package:bintango_indonesian_translater/feature/auth/provider/auth_provider.dart';
+import 'package:bintango_indonesian_translater/shared/route/app_router.dart';
 
 class SignInPage extends ConsumerWidget {
   final _emailController = TextEditingController();

@@ -6,11 +6,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_boilerplate/feature/auth/repository/token_repository.dart';
-import 'package:flutter_boilerplate/shared/http/api_response.dart';
-import 'package:flutter_boilerplate/shared/http/app_exception.dart';
-import 'package:flutter_boilerplate/shared/http/interceptor/dio_connectivity_request_retrier.dart';
-import 'package:flutter_boilerplate/shared/http/interceptor/retry_interceptor.dart';
+import 'package:bintango_indonesian_translater/feature/auth/repository/token_repository.dart';
+import 'package:bintango_indonesian_translater/shared/http/api_response.dart';
+import 'package:bintango_indonesian_translater/shared/http/app_exception.dart';
+import 'package:bintango_indonesian_translater/shared/http/interceptor/dio_connectivity_request_retrier.dart';
+import 'package:bintango_indonesian_translater/shared/http/interceptor/retry_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 //part 'api_provider.g.dart';

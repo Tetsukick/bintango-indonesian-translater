@@ -1,6 +1,6 @@
-import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
-import 'package:flutter_boilerplate/feature/auth/repository/token_repository.dart';
-import 'package:flutter_boilerplate/feature/auth/state/auth_state.dart';
+import 'package:bintango_indonesian_translater/feature/auth/provider/auth_provider.dart';
+import 'package:bintango_indonesian_translater/feature/auth/repository/token_repository.dart';
+import 'package:bintango_indonesian_translater/feature/auth/state/auth_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../state/app_start_state.dart';

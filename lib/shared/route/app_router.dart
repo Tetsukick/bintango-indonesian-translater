@@ -3,9 +3,9 @@
 // @CustomAutoRouter
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/app/widget/app_start_page.dart';
-import 'package:flutter_boilerplate/feature/auth/widget/sign_in_page.dart';
-import 'package:flutter_boilerplate/feature/auth/widget/sign_up_page.dart';
+import 'package:bintango_indonesian_translater/app/widget/app_start_page.dart';
+import 'package:bintango_indonesian_translater/feature/auth/widget/sign_in_page.dart';
+import 'package:bintango_indonesian_translater/feature/auth/widget/sign_up_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
