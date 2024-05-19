@@ -2,6 +2,7 @@ import 'package:bintango_indonesian_translater/feature/home/provider/translate_p
 import 'package:bintango_indonesian_translater/feature/home/widget/word_detail_card.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
+import 'package:bintango_indonesian_translater/shared/util/open_url.dart';
 import 'package:bintango_indonesian_translater/shared/widget/snackbar.dart';
 import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,6 +33,33 @@ class HomePage extends ConsumerWidget {
             Assets.image.bintangoTranslateLogo.image(height: 88),
           ],
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: ColorConstants.fontGrey,
+              ),
+              onPressed: () {
+                launch('https://jogjalanjalan.com/bintango-guidance/');
+              },
+              child: TextWidget.titleGraySmallBold('BINTANGOについて'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: ColorConstants.fontGrey,
+              ),
+              onPressed: () {
+                launch('https://linktr.ee/TeppeiKikuchi');
+              },
+              child: TextWidget.titleGraySmallBold('開発者情報'),
+            ),
+          ),
+          const SizedBox(width: 4,)
+        ],
       ),
       backgroundColor: ColorConstants.bgPinkColor,
       body: _widgetContent(context, ref),
