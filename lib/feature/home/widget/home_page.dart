@@ -5,11 +5,11 @@ import 'package:bintango_indonesian_translater/shared/constants/color_constants.
 import 'package:bintango_indonesian_translater/shared/util/open_url.dart';
 import 'package:bintango_indonesian_translater/shared/widget/snackbar.dart';
 import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class HomePage extends ConsumerWidget {
   HomePage({super.key});
@@ -23,17 +23,21 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 120,
+        toolbarHeight: ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+            ? 120 : 80,
         backgroundColor: ColorConstants.bgPinkColor,
         title: Row(
           children: [
             const SizedBox(width: 8,),
-            Assets.image.bintangoLogo256.image(height: 88),
+            Assets.image.bintangoLogo256.image(height:
+              ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
             const SizedBox(width: 16,),
-            Assets.image.bintangoTranslateLogo.image(height: 88),
+            Assets.image.bintangoTranslateLogo.image(height:
+              ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
           ],
         ),
-        actions: [
+        actions: ResponsiveBreakpoints.of(context).largerThan(MOBILE) ?
+        [
           Padding(
             padding: const EdgeInsets.all(12),
             child: TextButton(
@@ -41,9 +45,10 @@ class HomePage extends ConsumerWidget {
                 foregroundColor: ColorConstants.fontGrey,
               ),
               onPressed: () {
-                launch('https://jogjalanjalan.com/bintango-guidance/');
+                launch(SideMenu.bintango.url);
               },
-              child: TextWidget.titleGraySmallBoldNotSelectable('BINTANGOについて'),
+              child: TextWidget
+                  .titleGraySmallBoldNotSelectable(SideMenu.bintango.title),
             ),
           ),
           Padding(
@@ -53,12 +58,26 @@ class HomePage extends ConsumerWidget {
                 foregroundColor: ColorConstants.fontGrey,
               ),
               onPressed: () {
-                launch('https://linktr.ee/TeppeiKikuchi');
+                launch(SideMenu.developerInfo.url);
               },
-              child: TextWidget.titleGraySmallBoldNotSelectable('開発者情報'),
+              child: TextWidget.titleGraySmallBoldNotSelectable(
+                  SideMenu.developerInfo.title),
             ),
           ),
-          const SizedBox(width: 4,)
+          const SizedBox(width: 4,),
+        ]
+        : [
+          PopupMenuButton<SideMenu>(
+            onSelected: (SideMenu item) {
+              launch(item.url);
+            },
+            itemBuilder: (BuildContext context) => SideMenu.values.map((e) {
+              return PopupMenuItem<SideMenu>(
+                value: e,
+                child: Text(e.title),
+              );
+            }).toList(),
+          ),
         ],
       ),
       backgroundColor: ColorConstants.bgPinkColor,
@@ -99,7 +118,8 @@ class HomePage extends ConsumerWidget {
                 ref,
                 isJapanese: state.isLanguageSourceJapanese,
                 isInput: true,),
-              const SizedBox(width: 24,),
+              SizedBox(width: ResponsiveBreakpoints.of(context)
+                  .largerThan(MOBILE) ? 24 : 4,),
               _inputOutputField(
                 context,
                 ref,
@@ -137,8 +157,10 @@ class HomePage extends ConsumerWidget {
           shape: const CircleBorder(),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Assets.image.reverse128.image(width: 32, height: 32),
+        padding: EdgeInsets.all(
+          ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 16 : 8,),
+        child: Assets.image.reverse128.image(width:
+          ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 32 : 24,),
       ),
     );
   }
@@ -162,14 +184,15 @@ class HomePage extends ConsumerWidget {
     return Card(
       color: Colors.white,
       child: SizedBox(
-        width: MediaQuery.of(context).size.width / 3,
+        width: MediaQuery.of(context).size.width /
+            (ResponsiveBreakpoints.of(context).largerThan(TABLET) ? 3 : 2.2),
         height: 300,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
-              child: _languageTitle(isJapanese: isJapanese),
+              child: _languageTitle(context, isJapanese: isJapanese),
             ),
             Container(
               height: 1,
@@ -234,20 +257,17 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Widget _languageTitle({required bool isJapanese}) {
+  Widget _languageTitle(BuildContext context, {required bool isJapanese}) {
+    final imageHeight = ResponsiveBreakpoints.of(context)
+        .largerThan(MOBILE) ? 28 : 20;
     return Row(
       children: [
         if (isJapanese) Assets.image.japan64.image(height: 28)
           else Assets.image.indonesia64.image(height: 28),
         const SizedBox(width: 8,),
-        Text(
-          isJapanese ? '日本語' : 'インドネシア語',
-          style: const TextStyle(
-            color: ColorConstants.fontGrey,
-            fontSize: 24,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w500,
-          ),
+        Flexible(
+          child: TextWidget.titleGrayMediumBold(
+            isJapanese ? '日本語' : 'インドネシア語',),
         ),
       ],
     );
@@ -256,7 +276,7 @@ class HomePage extends ConsumerWidget {
   Widget _includedWordArea(BuildContext context, WidgetRef ref) {
     final state = ref.watch(translateNotifierProvider);
     return MasonryGridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: _gridCount(context),
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
       physics: const NeverScrollableScrollPhysics(),
@@ -268,4 +288,24 @@ class HomePage extends ConsumerWidget {
       },
     );
   }
+
+  int _gridCount(BuildContext context) {
+    if (ResponsiveBreakpoints.of(context).largerThan(TABLET)) {
+      return 4;
+    } else if (ResponsiveBreakpoints.of(context).largerThan(MOBILE)) {
+      return 2;
+    } else {
+      return 1;
+    }
+  }
+}
+
+enum SideMenu {
+  bintango(title: 'BINTANGOについて', url: 'https://jogjalanjalan.com/bintango-guidance/'),
+  developerInfo(title: '開発者情報', url: 'https://linktr.ee/TeppeiKikuchi');
+
+  final String title;
+  final String url;
+
+  const SideMenu({required this.title, required this.url});
 }
