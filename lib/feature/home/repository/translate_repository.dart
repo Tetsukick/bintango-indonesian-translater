@@ -1,9 +1,12 @@
-import 'dart:developer';
+import 'dart:developer' as dev;
+import 'dart:math';
 
+import 'package:bintango_indonesian_translater/feature/home/model/tango_entity.dart';
 import 'package:bintango_indonesian_translater/feature/home/model/translate_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bintango_indonesian_translater/shared/http/api_provider.dart';
 import 'package:bintango_indonesian_translater/shared/http/api_response.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class TranslateRepositoryProtocol {
   Future<TranslateResponse> translate({
@@ -33,7 +36,7 @@ class TranslateRepository implements TranslateRepositoryProtocol {
 
     response.when(
         success: (success) {
-          log(success.toString());
+          dev.log(success.toString());
         },
         error: (error) {
           return APIResponse.error(error);
@@ -54,5 +57,33 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     } else {
       throw Exception('timeout');
     }
+  }
+
+  Future<List<TangoEntity>> searchIncludeWords(String value) async {
+    final includedWords = <TangoEntity>[];
+    final wordList = value.split(' ');
+    const baseSearchLength = 3;
+    for (var i = 0; i < wordList.length; i++) {
+      final remainCount = [baseSearchLength, wordList.length - i].reduce(min);
+      var searchText = '';
+      for (var j = 0; j < remainCount; j++) {
+        if (j>0) {
+          searchText = '$searchText ';
+        }
+        searchText = searchText + wordList[i + j];
+        includedWords.addAll(await search(searchText));
+      }
+    }
+    return includedWords;
+  }
+
+  Future<List<TangoEntity>> search(String search) async {
+    final searchWordJsonList = await Supabase.instance.client
+        .from('words')
+        .select()
+        .eq('indonesian', search);
+    final searchWordList =
+      searchWordJsonList.map(TangoEntity.fromJson).toList();
+    return searchWordList;
   }
 }

@@ -36,7 +36,7 @@ class TextWidget {
       data,
       maxLines: maxLines,
       minFontSize: 16,
-      maxFontSize: 28,
+      maxFontSize: 24,
       style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: ColorConstants.fontBlack,
@@ -49,12 +49,12 @@ class TextWidget {
     return AutoSizeText(
       data,
       maxLines: maxLines,
-      minFontSize: 24,
-      maxFontSize: 32,
+      minFontSize: 20,
+      maxFontSize: 28,
       style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: ColorConstants.fontBlack,
-          fontSize: 32
+          fontSize: 28
       ),
     );
   }
@@ -92,11 +92,11 @@ class TextWidget {
       data,
       maxLines: maxLines,
       minFontSize: 16,
-      maxFontSize: 24,
+      maxFontSize: 20,
       style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: ColorConstants.fontGrey,
-          fontSize: 24
+          fontSize: 20
       ),
     );
   }
@@ -120,11 +120,11 @@ class TextWidget {
       data,
       maxLines: maxLines,
       minFontSize: 14,
-      maxFontSize: 20,
+      maxFontSize: 18,
       style: const TextStyle(
           fontWeight: FontWeight.normal,
           color: ColorConstants.fontGrey,
-          fontSize: 20
+          fontSize: 18
       ),
     );
   }
@@ -134,7 +134,7 @@ class TextWidget {
       data,
       maxLines: maxLines,
       minFontSize: 14,
-      maxFontSize: 20,
+      maxFontSize: 18,
       style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: ColorConstants.fontGrey,

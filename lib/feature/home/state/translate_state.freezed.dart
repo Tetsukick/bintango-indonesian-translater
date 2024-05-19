@@ -27,6 +27,9 @@ mixin _$TranslateState {
       throw _privateConstructorUsedError;
   set translateResponse(TranslateResponse? value) =>
       throw _privateConstructorUsedError;
+  List<TangoEntity> get includedWords => throw _privateConstructorUsedError;
+  set includedWords(List<TangoEntity> value) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TranslateStateCopyWith<TranslateState> get copyWith =>
@@ -43,7 +46,8 @@ abstract class $TranslateStateCopyWith<$Res> {
       {bool isLoading,
       bool isLanguageSourceJapanese,
       String inputtedText,
-      TranslateResponse? translateResponse});
+      TranslateResponse? translateResponse,
+      List<TangoEntity> includedWords});
 
   $TranslateResponseCopyWith<$Res>? get translateResponse;
 }
@@ -65,6 +69,7 @@ class _$TranslateStateCopyWithImpl<$Res, $Val extends TranslateState>
     Object? isLanguageSourceJapanese = null,
     Object? inputtedText = null,
     Object? translateResponse = freezed,
+    Object? includedWords = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -83,6 +88,10 @@ class _$TranslateStateCopyWithImpl<$Res, $Val extends TranslateState>
           ? _value.translateResponse
           : translateResponse // ignore: cast_nullable_to_non_nullable
               as TranslateResponse?,
+      includedWords: null == includedWords
+          ? _value.includedWords
+          : includedWords // ignore: cast_nullable_to_non_nullable
+              as List<TangoEntity>,
     ) as $Val);
   }
 
@@ -111,7 +120,8 @@ abstract class _$$TranslateStateImplCopyWith<$Res>
       {bool isLoading,
       bool isLanguageSourceJapanese,
       String inputtedText,
-      TranslateResponse? translateResponse});
+      TranslateResponse? translateResponse,
+      List<TangoEntity> includedWords});
 
   @override
   $TranslateResponseCopyWith<$Res>? get translateResponse;
@@ -132,6 +142,7 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
     Object? isLanguageSourceJapanese = null,
     Object? inputtedText = null,
     Object? translateResponse = freezed,
+    Object? includedWords = null,
   }) {
     return _then(_$TranslateStateImpl(
       isLoading: null == isLoading
@@ -150,6 +161,10 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
           ? _value.translateResponse
           : translateResponse // ignore: cast_nullable_to_non_nullable
               as TranslateResponse?,
+      includedWords: null == includedWords
+          ? _value.includedWords
+          : includedWords // ignore: cast_nullable_to_non_nullable
+              as List<TangoEntity>,
     ));
   }
 }
@@ -161,7 +176,8 @@ class _$TranslateStateImpl implements _TranslateState {
       {this.isLoading = false,
       this.isLanguageSourceJapanese = false,
       this.inputtedText = '',
-      this.translateResponse});
+      this.translateResponse,
+      this.includedWords = const []});
 
   @override
   @JsonKey()
@@ -174,10 +190,13 @@ class _$TranslateStateImpl implements _TranslateState {
   String inputtedText;
   @override
   TranslateResponse? translateResponse;
+  @override
+  @JsonKey()
+  List<TangoEntity> includedWords;
 
   @override
   String toString() {
-    return 'TranslateState(isLoading: $isLoading, isLanguageSourceJapanese: $isLanguageSourceJapanese, inputtedText: $inputtedText, translateResponse: $translateResponse)';
+    return 'TranslateState(isLoading: $isLoading, isLanguageSourceJapanese: $isLanguageSourceJapanese, inputtedText: $inputtedText, translateResponse: $translateResponse, includedWords: $includedWords)';
   }
 
   @JsonKey(ignore: true)
@@ -193,7 +212,8 @@ abstract class _TranslateState implements TranslateState {
       {bool isLoading,
       bool isLanguageSourceJapanese,
       String inputtedText,
-      TranslateResponse? translateResponse}) = _$TranslateStateImpl;
+      TranslateResponse? translateResponse,
+      List<TangoEntity> includedWords}) = _$TranslateStateImpl;
 
   @override
   bool get isLoading;
@@ -207,6 +227,9 @@ abstract class _TranslateState implements TranslateState {
   @override
   TranslateResponse? get translateResponse;
   set translateResponse(TranslateResponse? value);
+  @override
+  List<TangoEntity> get includedWords;
+  set includedWords(List<TangoEntity> value);
   @override
   @JsonKey(ignore: true)
   _$$TranslateStateImplCopyWith<_$TranslateStateImpl> get copyWith =>

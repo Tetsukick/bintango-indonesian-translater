@@ -26,9 +26,10 @@ class TranslateNotifier extends _$TranslateNotifier {
     state.inputtedText = text;
     state = state.copyWith();
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     if (state.inputtedText == text && state.inputtedText.length >= 3) {
       await translate();
+      await searchIncludedWords();
     }
   }
 
@@ -41,6 +42,13 @@ class TranslateNotifier extends _$TranslateNotifier {
     state
       ..translateResponse = response
       ..isLoading = false;
+    state = state.copyWith();
+  }
+
+  Future<void> searchIncludedWords() async {
+    final includedWordList =
+      await _translateProvider.searchIncludeWords(state.inputtedText);
+    state.includedWords = includedWordList;
     state = state.copyWith();
   }
 }
