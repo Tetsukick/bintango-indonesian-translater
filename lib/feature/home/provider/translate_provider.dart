@@ -47,7 +47,9 @@ class TranslateNotifier extends _$TranslateNotifier {
 
   Future<void> searchIncludedWords() async {
     final includedWordList =
-      await _translateProvider.searchIncludeWords(state.inputtedText);
+      await _translateProvider.searchIncludeWords(
+          state.isLanguageSourceJapanese
+              ? state.translateResponse?.text ?? '' : state.inputtedText,);
     state.includedWords = includedWordList;
     state = state.copyWith();
   }
