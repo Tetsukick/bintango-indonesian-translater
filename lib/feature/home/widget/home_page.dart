@@ -2,7 +2,11 @@ import 'package:bintango_indonesian_translater/feature/home/provider/translate_p
 import 'package:bintango_indonesian_translater/feature/home/widget/word_detail_card.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
+import 'package:bintango_indonesian_translater/shared/widget/snackbar.dart';
+import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -120,13 +124,6 @@ class HomePage extends ConsumerWidget {
       }) {
     final notifier = ref.watch(translateNotifierProvider.notifier);
     final state = ref.watch(translateNotifierProvider);
-    if (state.isLoading) {
-      _outputController.value = _outputController.value.copyWith(
-        text: 'loading...',
-        selection: const TextSelection
-            .collapsed(offset: 'loading...'.length),
-      );
-    }
     if (state.translateResponse != null) {
       _outputController.value = _outputController.value.copyWith(
         text: state.translateResponse!.text,
@@ -140,6 +137,7 @@ class HomePage extends ConsumerWidget {
         width: MediaQuery.of(context).size.width / 3,
         height: 300,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
@@ -152,25 +150,54 @@ class HomePage extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: TextField(
-                enabled: isInput,
+              child: isInput ? TextField(
                 maxLines: 6,
                 maxLength: isInput ? 500 : null,
                 controller: isInput ? _inputController : _outputController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   filled: true,
-                  hintText: isInput ? 'ここに翻訳したい文章を入力してください。' : null,
+                  hintText: 'ここに翻訳したい文章を入力してください。',
                   alignLabelWithHint: true,
-                  suffixIcon: isInput ? IconButton(
+                  suffixIcon: IconButton(
                     icon: const Icon(Icons.clear),
                     onPressed: _inputController.clear,
-                  ) : IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.copy),
                   ),
                 ),
                 onChanged: notifier.updateInputText,
+              ) : SizedBox(
+                height: 180,
+                child: Stack(
+                  children: [
+                    Visibility(
+                      visible: state.translateResponse != null
+                          && state.translateResponse!.text.isNotEmpty,
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          onPressed: () async {
+                            await Clipboard.setData(ClipboardData(text:
+                              state.translateResponse!.text,),);
+                            snackbarSuccess('クリップボードにコピーしました。');
+                          },
+                          icon: const Icon(Icons.copy),
+                        ),
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Flexible(child: TextWidget
+                            .titleGraySmallBold(
+                              state.isLoading ? 'loading...'
+                                  : state.translateResponse?.text ?? 'テキストを入力すると翻訳結果がこちらに表示されます。',
+                              maxLines: 100,
+                              textAlign: TextAlign.start,
+                        ),),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

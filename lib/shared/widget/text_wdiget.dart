@@ -164,7 +164,11 @@ class TextWidget {
     );
   }
 
-  static Widget titleGraySmallBold(String data, {int maxLines = 1}) {
+  static Widget titleGraySmallBold(String data, {
+    int maxLines = 1,
+    TextAlign textAlign = TextAlign.center,
+
+  }) {
     return SelectionArea(
       child: AutoSizeText(
         data,
