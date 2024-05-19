@@ -15,7 +15,7 @@ To run the desired flavor either use the launch configuration in VSCode/Android 
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Flutter Boilerplate works on iOS, Android, and Web._
+_\*BINTANGO Translate works on iOS, Android, and Web._
 
 ---
 

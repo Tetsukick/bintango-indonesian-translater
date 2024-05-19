@@ -88,17 +88,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Flutter Boilerplate"]
+            manifestPlaceholders = [appName: "BINTANGO Translate"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Flutter Boilerplate"]
+            manifestPlaceholders = [appName: "[STG] BINTANGO Translate"]
         }        
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Flutter Boilerplate"]
+            manifestPlaceholders = [appName: "[DEV] BINTANGO Translate"]
         }
     }
     buildTypes {

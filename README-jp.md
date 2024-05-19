@@ -1,4 +1,4 @@
-# Flutter Boilerplate
+# BINTANGO Translate
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -44,7 +44,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Flutter Boilerplate works on iOS, Android, and Web._
+_\*BINTANGO Translate works on iOS, Android, and Web._
 
 ---
 
