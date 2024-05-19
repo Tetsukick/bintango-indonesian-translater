@@ -37,44 +37,51 @@ class HomePage extends ConsumerWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 80),
-        child: _translateArea(context, ref),
+        child: Column(
+          children: [
+            _translateArea(context, ref),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Container(
+                height: 2,
+                width: double.infinity,
+                color: ColorConstants.primaryRed900.withOpacity(0.2),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _translateArea(BuildContext context, WidgetRef ref) {
     final state = ref.watch(translateNotifierProvider);
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 300,
-          child: Stack(
+    return SizedBox(
+      height: 300,
+      child: Stack(
+        children: [
+          Row(
             children: [
-              Row(
-                children: [
-                  const Spacer(),
-                  _inputOutputField(
-                    context,
-                    ref,
-                    isJapanese: state.isLanguageSourceJapanese,
-                    isInput: true,),
-                  const SizedBox(width: 24,),
-                  _inputOutputField(
-                    context,
-                    ref,
-                    isJapanese: !state.isLanguageSourceJapanese,
-                    isInput: false,),
-                  const Spacer(),
-                ],
-              ),
-              Align(
-                child: _changeLangSourceButton(context, ref),
-              ),
+              const Spacer(),
+              _inputOutputField(
+                context,
+                ref,
+                isJapanese: state.isLanguageSourceJapanese,
+                isInput: true,),
+              const SizedBox(width: 24,),
+              _inputOutputField(
+                context,
+                ref,
+                isJapanese: !state.isLanguageSourceJapanese,
+                isInput: false,),
+              const Spacer(),
             ],
           ),
-        ),
-      ],
+          Align(
+            child: _changeLangSourceButton(context, ref),
+          ),
+        ],
+      ),
     );
   }
 
