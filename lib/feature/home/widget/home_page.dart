@@ -86,8 +86,21 @@ class HomePage extends ConsumerWidget {
 
   Widget _changeLangSourceButton(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(translateNotifierProvider.notifier);
+    final state = ref.watch(translateNotifierProvider);
     return ElevatedButton(
-      onPressed: notifier.changeLangSource,
+      onPressed: () async {
+        notifier.changeLangSource();
+        if (state.inputtedText.isNotEmpty) {
+          await Future.delayed(const Duration(milliseconds: 500));
+          _inputController.value = _inputController.value.copyWith(
+            text: state.inputtedText,
+            selection: TextSelection
+                .collapsed(offset: state.inputtedText.length),
+          );
+          await notifier.translate();
+          await notifier.searchIncludedWords();
+        }
+      },
       style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),
       ),

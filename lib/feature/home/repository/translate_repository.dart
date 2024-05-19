@@ -78,10 +78,11 @@ class TranslateRepository implements TranslateRepositoryProtocol {
   }
 
   Future<List<TangoEntity>> search(String search) async {
+    final searchText = search.toLowerCase().replaceAll('.', '').replaceAll(',', '');
     final searchWordJsonList = await Supabase.instance.client
         .from('words')
         .select()
-        .eq('indonesian', search);
+        .eq('indonesian', searchText);
     final searchWordList =
       searchWordJsonList.map(TangoEntity.fromJson).toList();
     return searchWordList;

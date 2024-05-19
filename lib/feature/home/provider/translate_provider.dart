@@ -19,6 +19,11 @@ class TranslateNotifier extends _$TranslateNotifier {
 
   void changeLangSource() {
     state.isLanguageSourceJapanese = !state.isLanguageSourceJapanese;
+    if (state.translateResponse != null && state.translateResponse!.text.isNotEmpty) {
+      state
+          ..inputtedText = state.translateResponse!.text
+          ..translateResponse = null;
+    }
     state = state.copyWith();
   }
 
