@@ -20,7 +20,7 @@ TranslateResponse _$TranslateResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TranslateResponse {
-  String get code => throw _privateConstructorUsedError;
+  int get code => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $TranslateResponseCopyWith<$Res> {
           TranslateResponse value, $Res Function(TranslateResponse) then) =
       _$TranslateResponseCopyWithImpl<$Res, TranslateResponse>;
   @useResult
-  $Res call({String code, String text});
+  $Res call({int code, String text});
 }
 
 /// @nodoc
@@ -58,7 +58,7 @@ class _$TranslateResponseCopyWithImpl<$Res, $Val extends TranslateResponse>
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$TranslateResponseImplCopyWith<$Res>
       __$$TranslateResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String code, String text});
+  $Res call({int code, String text});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$$TranslateResponseImplCopyWithImpl<$Res>
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ class _$TranslateResponseImpl implements _TranslateResponse {
       _$$TranslateResponseImplFromJson(json);
 
   @override
-  final String code;
+  final int code;
   @override
   final String text;
 
@@ -153,14 +153,14 @@ class _$TranslateResponseImpl implements _TranslateResponse {
 
 abstract class _TranslateResponse implements TranslateResponse {
   const factory _TranslateResponse(
-      {required final String code,
+      {required final int code,
       required final String text}) = _$TranslateResponseImpl;
 
   factory _TranslateResponse.fromJson(Map<String, dynamic> json) =
       _$TranslateResponseImpl.fromJson;
 
   @override
-  String get code;
+  int get code;
   @override
   String get text;
   @override

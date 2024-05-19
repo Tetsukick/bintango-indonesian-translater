@@ -9,7 +9,7 @@ part of 'translate_response.dart';
 _$TranslateResponseImpl _$$TranslateResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$TranslateResponseImpl(
-      code: json['code'] as String,
+      code: (json['code'] as num).toInt(),
       text: json['text'] as String,
     );
 

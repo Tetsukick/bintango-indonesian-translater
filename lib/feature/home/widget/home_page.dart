@@ -99,6 +99,22 @@ class HomePage extends ConsumerWidget {
         required bool isJapanese,
         required bool isInput,
       }) {
+    final notifier = ref.watch(translateNotifierProvider.notifier);
+    final state = ref.watch(translateNotifierProvider);
+    if (state.isLoading) {
+      _outputController.value = _outputController.value.copyWith(
+        text: 'loading...',
+        selection: const TextSelection
+            .collapsed(offset: 'loading...'.length),
+      );
+    }
+    if (state.translateResponse != null) {
+      _outputController.value = _outputController.value.copyWith(
+        text: state.translateResponse!.text,
+        selection: TextSelection
+            .collapsed(offset: state.translateResponse!.text.length),
+      );
+    }
     return Card(
       color: Colors.white,
       child: SizedBox(
@@ -135,7 +151,7 @@ class HomePage extends ConsumerWidget {
                       icon: const Icon(Icons.copy),
                   ),
                 ),
-                onChanged: log,
+                onChanged: notifier.updateInputText,
               ),
             ),
           ],

@@ -6,7 +6,7 @@ part 'translate_response.g.dart';
 @freezed
 class TranslateResponse with _$TranslateResponse {
   const factory TranslateResponse({
-    required String code,
+    required int code,
     required String text,
   }) = _TranslateResponse;
 
