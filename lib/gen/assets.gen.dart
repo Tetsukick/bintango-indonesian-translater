@@ -25,6 +25,38 @@ class $AssetsEnvGen {
   List<String> get values => [envDevelopment, envProduction, envStaging];
 }
 
+class $AssetsImageGen {
+  const $AssetsImageGen();
+
+  /// File path: assets/image/bintango-translate-logo.png
+  AssetGenImage get bintangoTranslateLogo =>
+      const AssetGenImage('assets/image/bintango-translate-logo.png');
+
+  /// File path: assets/image/bintango_logo_256.png
+  AssetGenImage get bintangoLogo256 =>
+      const AssetGenImage('assets/image/bintango_logo_256.png');
+
+  /// File path: assets/image/indonesia_64.png
+  AssetGenImage get indonesia64 =>
+      const AssetGenImage('assets/image/indonesia_64.png');
+
+  /// File path: assets/image/japan_64.png
+  AssetGenImage get japan64 => const AssetGenImage('assets/image/japan_64.png');
+
+  /// File path: assets/image/reverse_128.png
+  AssetGenImage get reverse128 =>
+      const AssetGenImage('assets/image/reverse_128.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        bintangoTranslateLogo,
+        bintangoLogo256,
+        indonesia64,
+        japan64,
+        reverse128
+      ];
+}
+
 class $AssetsLangGen {
   const $AssetsLangGen();
 
@@ -40,6 +72,7 @@ class Assets {
 
   static const AssetGenImage appLogo = AssetGenImage('assets/app_logo.png');
   static const $AssetsEnvGen env = $AssetsEnvGen();
+  static const $AssetsImageGen image = $AssetsImageGen();
   static const $AssetsLangGen lang = $AssetsLangGen();
 
   /// List of all assets

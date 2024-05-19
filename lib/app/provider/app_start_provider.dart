@@ -16,6 +16,8 @@ class AppStartNotifier extends _$AppStartNotifier {
   FutureOr<AppStartState> build() async {
     ref.onDispose(() {});
 
+    return const AppStartState.authenticated();
+
     final _authState = ref.watch(authNotifierProvider);
 
     if (_authState is AuthStateLoggedIn) {
