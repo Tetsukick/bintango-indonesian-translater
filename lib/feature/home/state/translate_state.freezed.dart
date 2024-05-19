@@ -16,8 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TranslateState {
+  bool get isLanguageSourceJapanese => throw _privateConstructorUsedError;
+  set isLanguageSourceJapanese(bool value) =>
+      throw _privateConstructorUsedError;
   String get inputtedText => throw _privateConstructorUsedError;
+  set inputtedText(String value) => throw _privateConstructorUsedError;
   TranslateResponse? get translateResponse =>
+      throw _privateConstructorUsedError;
+  set translateResponse(TranslateResponse? value) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +37,10 @@ abstract class $TranslateStateCopyWith<$Res> {
           TranslateState value, $Res Function(TranslateState) then) =
       _$TranslateStateCopyWithImpl<$Res, TranslateState>;
   @useResult
-  $Res call({String inputtedText, TranslateResponse? translateResponse});
+  $Res call(
+      {bool isLanguageSourceJapanese,
+      String inputtedText,
+      TranslateResponse? translateResponse});
 
   $TranslateResponseCopyWith<$Res>? get translateResponse;
 }
@@ -49,10 +58,15 @@ class _$TranslateStateCopyWithImpl<$Res, $Val extends TranslateState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLanguageSourceJapanese = null,
     Object? inputtedText = null,
     Object? translateResponse = freezed,
   }) {
     return _then(_value.copyWith(
+      isLanguageSourceJapanese: null == isLanguageSourceJapanese
+          ? _value.isLanguageSourceJapanese
+          : isLanguageSourceJapanese // ignore: cast_nullable_to_non_nullable
+              as bool,
       inputtedText: null == inputtedText
           ? _value.inputtedText
           : inputtedText // ignore: cast_nullable_to_non_nullable
@@ -85,7 +99,10 @@ abstract class _$$TranslateStateImplCopyWith<$Res>
       __$$TranslateStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String inputtedText, TranslateResponse? translateResponse});
+  $Res call(
+      {bool isLanguageSourceJapanese,
+      String inputtedText,
+      TranslateResponse? translateResponse});
 
   @override
   $TranslateResponseCopyWith<$Res>? get translateResponse;
@@ -102,10 +119,15 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLanguageSourceJapanese = null,
     Object? inputtedText = null,
     Object? translateResponse = freezed,
   }) {
     return _then(_$TranslateStateImpl(
+      isLanguageSourceJapanese: null == isLanguageSourceJapanese
+          ? _value.isLanguageSourceJapanese
+          : isLanguageSourceJapanese // ignore: cast_nullable_to_non_nullable
+              as bool,
       inputtedText: null == inputtedText
           ? _value.inputtedText
           : inputtedText // ignore: cast_nullable_to_non_nullable
@@ -121,32 +143,24 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TranslateStateImpl implements _TranslateState {
-  _$TranslateStateImpl({this.inputtedText = '', this.translateResponse});
+  _$TranslateStateImpl(
+      {this.isLanguageSourceJapanese = false,
+      this.inputtedText = '',
+      this.translateResponse});
 
   @override
   @JsonKey()
-  final String inputtedText;
+  bool isLanguageSourceJapanese;
   @override
-  final TranslateResponse? translateResponse;
+  @JsonKey()
+  String inputtedText;
+  @override
+  TranslateResponse? translateResponse;
 
   @override
   String toString() {
-    return 'TranslateState(inputtedText: $inputtedText, translateResponse: $translateResponse)';
+    return 'TranslateState(isLanguageSourceJapanese: $isLanguageSourceJapanese, inputtedText: $inputtedText, translateResponse: $translateResponse)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TranslateStateImpl &&
-            (identical(other.inputtedText, inputtedText) ||
-                other.inputtedText == inputtedText) &&
-            (identical(other.translateResponse, translateResponse) ||
-                other.translateResponse == translateResponse));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, inputtedText, translateResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -158,13 +172,19 @@ class _$TranslateStateImpl implements _TranslateState {
 
 abstract class _TranslateState implements TranslateState {
   factory _TranslateState(
-      {final String inputtedText,
-      final TranslateResponse? translateResponse}) = _$TranslateStateImpl;
+      {bool isLanguageSourceJapanese,
+      String inputtedText,
+      TranslateResponse? translateResponse}) = _$TranslateStateImpl;
 
   @override
+  bool get isLanguageSourceJapanese;
+  set isLanguageSourceJapanese(bool value);
+  @override
   String get inputtedText;
+  set inputtedText(String value);
   @override
   TranslateResponse? get translateResponse;
+  set translateResponse(TranslateResponse? value);
   @override
   @JsonKey(ignore: true)
   _$$TranslateStateImplCopyWith<_$TranslateStateImpl> get copyWith =>

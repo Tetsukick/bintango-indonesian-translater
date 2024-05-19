@@ -16,4 +16,9 @@ class TranslateNotifier extends _$TranslateNotifier {
   }
 
   late final ApiProvider _api = ref.read(apiProvider);
+
+  void changeLangSource() {
+    state.isLanguageSourceJapanese = !state.isLanguageSourceJapanese;
+    state = state.copyWith();
+  }
 }

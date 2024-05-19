@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:bintango_indonesian_translater/feature/home/provider/translate_provider.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -32,12 +33,6 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Widget _widgetLoading(BuildContext context, WidgetRef ref) {
-    return Center(
-      child: Text('loading'.tr()),
-    );
-  }
-
   Widget _widgetContent(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
       child: Padding(
@@ -48,6 +43,7 @@ class HomePage extends ConsumerWidget {
   }
 
   Widget _translateArea(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(translateNotifierProvider);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -59,15 +55,21 @@ class HomePage extends ConsumerWidget {
                 children: [
                   const Spacer(),
                   _inputOutputField(
-                      context, ref, isJapanese: true, isInput: true,),
+                    context,
+                    ref,
+                    isJapanese: state.isLanguageSourceJapanese,
+                    isInput: true,),
                   const SizedBox(width: 24,),
                   _inputOutputField(
-                      context, ref, isJapanese: false, isInput: false,),
+                    context,
+                    ref,
+                    isJapanese: !state.isLanguageSourceJapanese,
+                    isInput: false,),
                   const Spacer(),
                 ],
               ),
               Align(
-                child: _changeLangSourceButton(),
+                child: _changeLangSourceButton(context, ref),
               ),
             ],
           ),
@@ -76,10 +78,10 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Widget _changeLangSourceButton() {
+  Widget _changeLangSourceButton(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(translateNotifierProvider.notifier);
     return ElevatedButton(
-      onPressed: () {
-      },
+      onPressed: notifier.changeLangSource,
       style: ElevatedButton.styleFrom(
           shape: const CircleBorder(),
       ),
