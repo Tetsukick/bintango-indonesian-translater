@@ -183,6 +183,23 @@ class TextWidget {
       ),
     );
   }
+  static Widget titleGraySmallBoldNotSelectable(String data, {
+    int maxLines = 1,
+    TextAlign textAlign = TextAlign.center,
+
+  }) {
+    return AutoSizeText(
+      data,
+      maxLines: maxLines,
+      minFontSize: 11,
+      maxFontSize: 16,
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.fontGrey,
+          fontSize: 14
+      ),
+    );
+  }
 
   static Widget titleGraySmallest(String data, {int maxLines = 1}) {
     return SelectionArea(

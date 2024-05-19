@@ -43,7 +43,7 @@ class HomePage extends ConsumerWidget {
               onPressed: () {
                 launch('https://jogjalanjalan.com/bintango-guidance/');
               },
-              child: TextWidget.titleGraySmallBold('BINTANGOについて'),
+              child: TextWidget.titleGraySmallBoldNotSelectable('BINTANGOについて'),
             ),
           ),
           Padding(
@@ -55,7 +55,7 @@ class HomePage extends ConsumerWidget {
               onPressed: () {
                 launch('https://linktr.ee/TeppeiKikuchi');
               },
-              child: TextWidget.titleGraySmallBold('開発者情報'),
+              child: TextWidget.titleGraySmallBoldNotSelectable('開発者情報'),
             ),
           ),
           const SizedBox(width: 4,)
@@ -215,13 +215,13 @@ class HomePage extends ConsumerWidget {
                     SingleChildScrollView(
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Flexible(child: TextWidget
+                        child: TextWidget
                             .titleGraySmallBold(
                               state.isLoading ? 'loading...'
                                   : state.translateResponse?.text ?? 'テキストを入力すると翻訳結果がこちらに表示されます。',
                               maxLines: 100,
                               textAlign: TextAlign.start,
-                        ),),
+                        ),
                       ),
                     ),
                   ],
