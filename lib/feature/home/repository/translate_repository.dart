@@ -61,7 +61,8 @@ class TranslateRepository implements TranslateRepositoryProtocol {
 
   Future<List<TangoEntity>> searchIncludeWords(String value) async {
     final includedWords = <TangoEntity>[];
-    final wordList = value.split(' ');
+    final regExpForSpaceAndNewlines = RegExp(r'[\s\n]');
+    final wordList = value.split(regExpForSpaceAndNewlines);
     const baseSearchLength = 3;
     for (var i = 0; i < wordList.length; i++) {
       final remainCount = [baseSearchLength, wordList.length - i].reduce(min);
@@ -78,7 +79,10 @@ class TranslateRepository implements TranslateRepositoryProtocol {
   }
 
   Future<List<TangoEntity>> search(String search) async {
-    final searchText = search.toLowerCase().replaceAll('.', '').replaceAll(',', '');
+    final searchText = search.toLowerCase()
+        .replaceAll('.', '')
+        .replaceAll(',', '')
+        .replaceAll('\n', '');
     final searchWordJsonList = await Supabase.instance.client
         .from('words')
         .select()
