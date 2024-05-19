@@ -36,12 +36,28 @@ class $AssetsImageGen {
   AssetGenImage get bintangoLogo256 =>
       const AssetGenImage('assets/image/bintango_logo_256.png');
 
+  /// File path: assets/image/english_64.png
+  AssetGenImage get english64 =>
+      const AssetGenImage('assets/image/english_64.png');
+
+  /// File path: assets/image/example_64.png
+  AssetGenImage get example64 =>
+      const AssetGenImage('assets/image/example_64.png');
+
   /// File path: assets/image/indonesia_64.png
   AssetGenImage get indonesia64 =>
       const AssetGenImage('assets/image/indonesia_64.png');
 
+  /// File path: assets/image/info_notes.png
+  AssetGenImage get infoNotes =>
+      const AssetGenImage('assets/image/info_notes.png');
+
   /// File path: assets/image/japan_64.png
   AssetGenImage get japan64 => const AssetGenImage('assets/image/japan_64.png');
+
+  /// File path: assets/image/japan_fuji_64.png
+  AssetGenImage get japanFuji64 =>
+      const AssetGenImage('assets/image/japan_fuji_64.png');
 
   /// File path: assets/image/reverse_128.png
   AssetGenImage get reverse128 =>
@@ -51,8 +67,12 @@ class $AssetsImageGen {
   List<AssetGenImage> get values => [
         bintangoTranslateLogo,
         bintangoLogo256,
+        english64,
+        example64,
         indonesia64,
+        infoNotes,
         japan64,
+        japanFuji64,
         reverse128
       ];
 }
