@@ -54,7 +54,7 @@ class FirebaseAnalyticsUtils {
 
   static bool _canTrack() {
     if (kIsWeb) {
-      return false;
+      return true;
     }
     if (Platform.isIOS) {
       return AppTrackingTransparency.trackingAuthorizationStatus ==
@@ -62,7 +62,7 @@ class FirebaseAnalyticsUtils {
     } else if (Platform.isAndroid) {
       return true;
     } else {
-      return false;
+      return true;
     }
   }
 }

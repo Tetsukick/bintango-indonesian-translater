@@ -1,6 +1,8 @@
 enum AnalyticsScreen {
-  signIn,
-  signUp,
+  BTsignIn,
+  BTsignUp,
+
+  BThome,
 }
 
 extension AnalyticsScreenExt on AnalyticsScreen {
@@ -23,7 +25,7 @@ enum SignInItem with AnalyticsItem {
   goSignUp;
 
   @override
-  AnalyticsScreen get screen => AnalyticsScreen.signIn;
+  AnalyticsScreen get screen => AnalyticsScreen.BTsignIn;
 }
 
 enum SignUpItem with AnalyticsItem {
@@ -32,5 +34,13 @@ enum SignUpItem with AnalyticsItem {
   goSignIn;
 
   @override
-  AnalyticsScreen get screen => AnalyticsScreen.signUp;
+  AnalyticsScreen get screen => AnalyticsScreen.BTsignUp;
+}
+
+enum HomeItem with AnalyticsItem {
+  search,
+  copy;
+
+  @override
+  AnalyticsScreen get screen => AnalyticsScreen.BThome;
 }

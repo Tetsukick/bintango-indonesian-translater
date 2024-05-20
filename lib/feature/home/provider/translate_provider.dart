@@ -1,5 +1,7 @@
 import 'package:bintango_indonesian_translater/feature/home/repository/translate_repository.dart';
 import 'package:bintango_indonesian_translater/feature/home/state/translate_state.dart';
+import 'package:bintango_indonesian_translater/shared/util/analytics/analytics_parameters.dart';
+import 'package:bintango_indonesian_translater/shared/util/analytics/firebase_analytics.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'translate_provider.g.dart';
@@ -33,6 +35,7 @@ class TranslateNotifier extends _$TranslateNotifier {
 
     await Future.delayed(const Duration(seconds: 2));
     if (state.inputtedText == text && state.inputtedText.length >= 3) {
+      FirebaseAnalyticsUtils.eventsTrack(HomeItem.search);
       await translate();
       await searchIncludedWords();
     }

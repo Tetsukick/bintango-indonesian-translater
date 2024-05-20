@@ -2,6 +2,8 @@ import 'package:bintango_indonesian_translater/feature/home/provider/translate_p
 import 'package:bintango_indonesian_translater/feature/home/widget/word_detail_card.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
+import 'package:bintango_indonesian_translater/shared/util/analytics/analytics_parameters.dart';
+import 'package:bintango_indonesian_translater/shared/util/analytics/firebase_analytics.dart';
 import 'package:bintango_indonesian_translater/shared/util/open_url.dart';
 import 'package:bintango_indonesian_translater/shared/widget/snackbar.dart';
 import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
@@ -21,6 +23,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    FirebaseAnalyticsUtils.screenTrack(AnalyticsScreen.BThome);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: ResponsiveBreakpoints.of(context).largerThan(MOBILE)
@@ -227,6 +230,7 @@ class HomePage extends ConsumerWidget {
                         alignment: Alignment.bottomRight,
                         child: IconButton(
                           onPressed: () async {
+                            FirebaseAnalyticsUtils.eventsTrack(HomeItem.copy);
                             await Clipboard.setData(ClipboardData(text:
                               state.translateResponse!.text,),);
                             snackbarSuccess('クリップボードにコピーしました。');
