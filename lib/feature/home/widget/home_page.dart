@@ -13,8 +13,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class HomePage extends ConsumerWidget {
-  HomePage({super.key});
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() {
+    return _HomePageState();
+  }
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
 
   final TextEditingController _inputController = TextEditingController();
   final TextEditingController _outputController = TextEditingController();
@@ -22,8 +30,13 @@ class HomePage extends ConsumerWidget {
   final _iconWidth = 20.0;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
     FirebaseAnalyticsUtils.screenTrack(AnalyticsScreen.BThome);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: ResponsiveBreakpoints.of(context).largerThan(MOBILE)
