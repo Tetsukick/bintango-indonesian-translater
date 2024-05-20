@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:bintango_indonesian_translater/feature/auth/repository/token_repository.dart';
 import 'package:bintango_indonesian_translater/shared/http/api_response.dart';
 import 'package:bintango_indonesian_translater/shared/http/app_exception.dart';
 import 'package:bintango_indonesian_translater/shared/http/interceptor/dio_connectivity_request_retrier.dart';
@@ -27,6 +26,7 @@ final apiProvider = Provider<ApiProvider>(ApiProvider.new);
 class ApiProvider {
   ApiProvider(this._ref) {
     _dio = Dio();
+    _dio.options.followRedirects = true;
     _dio.options.sendTimeout = const Duration(seconds: 15);
     _dio.options.connectTimeout = const Duration(seconds: 15);
     _dio.options.receiveTimeout = const Duration(seconds: 15);
@@ -78,13 +78,16 @@ class ApiProvider {
     var content = 'application/x-www-form-urlencoded';
 
     if (contentType == ContentType.json) {
-      content = 'application/json';
+      content = 'text/plain';
     }
 
     try {
       final headers = {
-        'accept': '*/*',
         'Content-Type': content,
+        // 'Access-Control-Allow-Origin': 'https://translate.jogjalanjalan.com',
+        // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        // 'Access-Control-Allow-Headers': 'Content-Type, Accept',
+        // 'Access-Control-Allow-Credentials': true,
       };
       // final _appToken = await _tokenRepository.fetchToken();
       // if (_appToken != null) {
@@ -176,12 +179,15 @@ class ApiProvider {
     var content = 'application/x-www-form-urlencoded';
 
     if (contentType == ContentType.json) {
-      content = 'application/json; charset=utf-8';
+      content = 'text/plain; charset=utf-8';
     }
 
     final headers = {
-      'accept': '*/*',
       'Content-Type': content,
+      // 'Access-Control-Allow-Origin': 'https://translate.jogjalanjalan.com',
+      // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      // 'Access-Control-Allow-Headers': 'Content-Type, Accept',
+      // 'Access-Control-Allow-Credentials': true,
     };
 
     // final _appToken = await _tokenRepository.fetchToken();

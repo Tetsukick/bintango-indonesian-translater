@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:bintango_indonesian_translater/feature/home/model/tango_entity.dart';
 import 'package:bintango_indonesian_translater/feature/home/model/translate_response.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bintango_indonesian_translater/shared/http/api_provider.dart';
 import 'package:bintango_indonesian_translater/shared/http/api_response.dart';
@@ -27,12 +29,25 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     required String text,
     required bool isSourceJapanese,
   }) async {
-    final body = {
-      'text': text,
-      'source': isSourceJapanese ? 'ja' : 'id',
-      'target': isSourceJapanese ? 'id' : 'ja',
+    final prompt = isSourceJapanese ?
+    '日本語の例文「$text」をインドネシア語に翻訳してください。（表現方法：教科書のような違和感のない優しい丁寧なインドネシア語表現)'
+      : 'インドネシア語の例文「$text」を日本語に翻訳してください。（文体：ですます調、表現方法：教科書のような違和感のない優しい丁寧な日本語表現';
+
+    final queryParams = {
+      'key': dotenv.env['GEMINI_API_KEY']
     };
-    final response = await _api.post('/exec', body);
+    final body =
+    {
+      'contents': [
+        {'role': 'user', 'parts': { 'text': prompt }}
+      ]
+    };
+    // {
+    //   'text': text,
+    //   'source': isSourceJapanese ? 'ja' : 'id',
+    //   'target': isSourceJapanese ? 'id' : 'ja',
+    // };
+    final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
 
     response.when(
         success: (success) {
@@ -43,10 +58,12 @@ class TranslateRepository implements TranslateRepositoryProtocol {
         },);
 
     if (response is APISuccess) {
-      final value = response.value;
+      final value = response.value as Map<String, dynamic>;
       try {
-        final _result = TranslateResponse
-            .fromJson(value as Map<String, dynamic>);
+        final _result = TranslateResponse(
+          code: 200,
+          text: value['candidates'][0]['content']['parts'][0]['text'] as String
+        );
 
         return _result;
       } catch (e) {
