@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:bintango_indonesian_translater/feature/home/model/tango_entity.dart';
 import 'package:bintango_indonesian_translater/feature/home/model/translate_response.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bintango_indonesian_translater/shared/http/api_provider.dart';
@@ -42,11 +43,7 @@ class TranslateRepository implements TranslateRepositoryProtocol {
         {'role': 'user', 'parts': { 'text': prompt }}
       ]
     };
-    // {
-    //   'text': text,
-    //   'source': isSourceJapanese ? 'ja' : 'id',
-    //   'target': isSourceJapanese ? 'id' : 'ja',
-    // };
+
     final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
 
     response.when(
@@ -80,6 +77,7 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     final includedWords = <TangoEntity>[];
     final regExpForSpaceAndNewlines = RegExp(r'[\s\n]');
     final wordList = value.split(regExpForSpaceAndNewlines);
+    final regExpOfNyaMuKu = RegExp(r'(nya|ku|mu)$');
     const baseSearchLength = 3;
     for (var i = 0; i < wordList.length; i++) {
       final remainCount = [baseSearchLength, wordList.length - i].reduce(min);
@@ -89,6 +87,22 @@ class TranslateRepository implements TranslateRepositoryProtocol {
           searchText = '$searchText ';
         }
         searchText = searchText + wordList[i + j];
+        if (j == 0) {
+          if (searchText.contains(regExpOfNyaMuKu)) {
+            final replacedSearchText =
+              searchText.replaceAll(regExpOfNyaMuKu, '');
+            if (includedWords
+                .firstWhereOrNull((e) => e.indonesian == replacedSearchText) != null) {
+              continue;
+            }
+            includedWords.addAll(
+                await search(replacedSearchText),);
+          }
+        }
+        if (includedWords
+            .firstWhereOrNull((e) => e.indonesian == searchText) != null) {
+          continue;
+        }
         includedWords.addAll(await search(searchText));
       }
     }
