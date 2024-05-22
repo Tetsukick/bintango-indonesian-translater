@@ -13,6 +13,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'explanation_detail_card.dart';
+
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
@@ -106,6 +108,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Column(
         children: [
           _translateArea(context, ref),
+          _detailDescriptionArea(context, ref),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Container(
@@ -288,6 +291,15 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
       ],
     );
+  }
+
+  Widget _detailDescriptionArea(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(translateNotifierProvider);
+    if (state.getDetailExplanationResponse != null) {
+      return ExplanationDetailCard(data: state.getDetailExplanationResponse!);
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 
   Widget _includedWordArea(BuildContext context, WidgetRef ref) {

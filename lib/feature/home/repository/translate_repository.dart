@@ -73,6 +73,52 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     }
   }
 
+  Future<TranslateResponse> getDetailExplanation({
+    required String text,
+    required bool isSourceJapanese,
+  }) async {
+    final prompt =
+    'インドネシア語の例文「$text」の意味と文法を日本語で解説してください。（文体：ですます調、表現方法：教科書のような違和感のない優しい丁寧な日本語表現, テキスト形式: マークダウン形式)';
+
+    final queryParams = {
+      'key': dotenv.env['GEMINI_API_KEY']
+    };
+    final body =
+    {
+      'contents': [
+        {'role': 'user', 'parts': { 'text': prompt }}
+      ]
+    };
+
+    final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
+
+    response.when(
+      success: (success) {
+        dev.log(success.toString());
+      },
+      error: (error) {
+        return APIResponse.error(error);
+      },);
+
+    if (response is APISuccess) {
+      final value = response.value as Map<String, dynamic>;
+      try {
+        final _result = TranslateResponse(
+            code: 200,
+            text: value['candidates'][0]['content']['parts'][0]['text'] as String
+        );
+
+        return _result;
+      } catch (e) {
+        throw Exception(e);
+      }
+    } else if (response is APIError) {
+      throw Exception(response.exception);
+    } else {
+      throw Exception('timeout');
+    }
+  }
+
   Future<List<TangoEntity>> searchIncludeWords(String value) async {
     final includedWords = <TangoEntity>[];
     final regExpForSpaceAndNewlines = RegExp(r'[\s\n]');

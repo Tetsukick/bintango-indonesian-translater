@@ -11,6 +11,7 @@ class TranslateState with _$TranslateState {
     @Default(false) bool isLanguageSourceJapanese,
     @Default('') String inputtedText,
     TranslateResponse? translateResponse,
+    TranslateResponse? getDetailExplanationResponse,
     @Default([]) List<TangoEntity> includedWords,
   }) = _TranslateState;
 }

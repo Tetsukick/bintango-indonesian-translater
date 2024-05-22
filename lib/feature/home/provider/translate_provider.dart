@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bintango_indonesian_translater/feature/home/repository/translate_repository.dart';
 import 'package:bintango_indonesian_translater/feature/home/state/translate_state.dart';
 import 'package:bintango_indonesian_translater/shared/util/analytics/analytics_parameters.dart';
@@ -37,7 +39,11 @@ class TranslateNotifier extends _$TranslateNotifier {
     if (state.inputtedText == text && state.inputtedText.length >= 3) {
       FirebaseAnalyticsUtils.eventsTrack(HomeItem.search);
       await translate();
-      await searchIncludedWords();
+      unawaited(searchIncludedWords());
+    }
+    await Future.delayed(const Duration(seconds: 2));
+    if (state.inputtedText == text && state.inputtedText.length >= 3) {
+      await getDetailExplanation();
     }
   }
 
@@ -51,6 +57,17 @@ class TranslateNotifier extends _$TranslateNotifier {
       ..translateResponse = response
       ..isLoading = false;
     state = state.copyWith();
+  }
+
+  Future<void> getDetailExplanation() async {;
+    if (state.translateResponse != null && state.translateResponse!.text.isNotEmpty) {
+      final response = await _translateProvider.getDetailExplanation(
+          text: state.isLanguageSourceJapanese
+              ? state.translateResponse!.text : state.inputtedText,
+          isSourceJapanese: state.isLanguageSourceJapanese);
+      state.getDetailExplanationResponse = response;
+      state = state.copyWith();
+    }
   }
 
   Future<void> searchIncludedWords() async {
