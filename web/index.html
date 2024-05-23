@@ -44,6 +44,24 @@
   <!-- Google Adsense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8604906384604870"
           crossorigin="anonymous"></script>
+
+  <!-- Lottie animation -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+  <style>
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
 
 <body>
@@ -114,6 +132,9 @@
       loadMainDartJs();
     }
   </script>
+  <div class="loading">
+    <dotlottie-player src="https://lottie.host/14c2ef5f-d9b3-46cd-a7a7-05c3cb1ba02b/8zoxgq7ue9.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  </div>
 </body>
 
 </html>

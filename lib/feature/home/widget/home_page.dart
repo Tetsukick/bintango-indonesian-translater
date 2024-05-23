@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:bintango_indonesian_translater/feature/home/provider/translate_provider.dart';
 import 'package:bintango_indonesian_translater/feature/home/widget/word_detail_card.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
@@ -35,6 +37,8 @@ class _HomePageState extends ConsumerState<HomePage> {
   void initState() {
     super.initState();
     FirebaseAnalyticsUtils.screenTrack(AnalyticsScreen.BThome);
+    final loading = querySelector('.loading') as DivElement?;
+    if (loading != null) loading.remove();
   }
 
   @override
