@@ -43,67 +43,71 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: ResponsiveBreakpoints.of(context).largerThan(MOBILE)
-            ? 120 : 80,
-        backgroundColor: ColorConstants.bgPinkColor,
-        title: Row(
-          children: [
-            const SizedBox(width: 8,),
-            Assets.image.bintangoLogo256.image(height:
-              ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
-            const SizedBox(width: 16,),
-            Assets.image.bintangoTranslateLogo.image(height:
-              ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
+    return Title(
+      color: ColorConstants.bgPinkColor,
+      title: 'BINTANGO Translate | AIでインドネシア語翻訳と同時に一括単語検索',
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+              ? 120 : 80,
+          backgroundColor: ColorConstants.bgPinkColor,
+          title: Row(
+            children: [
+              const SizedBox(width: 8,),
+              Assets.image.bintangoLogo256.image(height:
+                ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
+              const SizedBox(width: 16,),
+              Assets.image.bintangoTranslateLogo.image(height:
+                ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
+            ],
+          ),
+          actions: ResponsiveBreakpoints.of(context).largerThan(MOBILE) ?
+          [
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: ColorConstants.fontGrey,
+                ),
+                onPressed: () {
+                  launch(SideMenu.bintango.url);
+                },
+                child: TextWidget
+                    .titleGraySmallBoldNotSelectable(SideMenu.bintango.title),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: ColorConstants.fontGrey,
+                ),
+                onPressed: () {
+                  launch(SideMenu.developerInfo.url);
+                },
+                child: TextWidget.titleGraySmallBoldNotSelectable(
+                    SideMenu.developerInfo.title),
+              ),
+            ),
+            const SizedBox(width: 4,),
+          ]
+          : [
+            PopupMenuButton<SideMenu>(
+              onSelected: (SideMenu item) {
+                launch(item.url);
+              },
+              itemBuilder: (BuildContext context) => SideMenu.values.map((e) {
+                return PopupMenuItem<SideMenu>(
+                  value: e,
+                  child: Text(e.title),
+                );
+              }).toList(),
+            ),
           ],
         ),
-        actions: ResponsiveBreakpoints.of(context).largerThan(MOBILE) ?
-        [
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: ColorConstants.fontGrey,
-              ),
-              onPressed: () {
-                launch(SideMenu.bintango.url);
-              },
-              child: TextWidget
-                  .titleGraySmallBoldNotSelectable(SideMenu.bintango.title),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: ColorConstants.fontGrey,
-              ),
-              onPressed: () {
-                launch(SideMenu.developerInfo.url);
-              },
-              child: TextWidget.titleGraySmallBoldNotSelectable(
-                  SideMenu.developerInfo.title),
-            ),
-          ),
-          const SizedBox(width: 4,),
-        ]
-        : [
-          PopupMenuButton<SideMenu>(
-            onSelected: (SideMenu item) {
-              launch(item.url);
-            },
-            itemBuilder: (BuildContext context) => SideMenu.values.map((e) {
-              return PopupMenuItem<SideMenu>(
-                value: e,
-                child: Text(e.title),
-              );
-            }).toList(),
-          ),
-        ],
+        backgroundColor: ColorConstants.bgPinkColor,
+        body: _widgetContent(context, ref),
       ),
-      backgroundColor: ColorConstants.bgPinkColor,
-      body: _widgetContent(context, ref),
     );
   }
 

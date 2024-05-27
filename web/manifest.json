@@ -1,11 +1,11 @@
 {
-    "name": "BINTANGO Translate",
-    "short_name": "BINTANGO Translate",
+    "name": "BINTANGO Translate | AIでインドネシア語翻訳と同時に一括単語検索",
+    "short_name": "BINTANGO Translate | AIでインドネシア語翻訳と同時に一括単語検索",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
     "theme_color": "#FFFFFF",
-    "description": "A simple boilerplate project.",
+    "description": "AIでインドネシア語翻訳と同時に一括単語検索",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
