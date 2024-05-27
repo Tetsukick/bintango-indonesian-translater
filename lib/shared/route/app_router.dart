@@ -2,6 +2,7 @@
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
 
+import 'package:bintango_indonesian_translater/feature/error/widget/not_found_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bintango_indonesian_translater/app/widget/app_start_page.dart';
 import 'package:bintango_indonesian_translater/feature/auth/widget/sign_in_page.dart';
@@ -19,11 +20,10 @@ GoRouter router(RouterRef ref) {
 
   return GoRouter(
     navigatorKey: navigatorKey,
-    //refreshListenable: notifier,
     debugLogDiagnostics: true,
     initialLocation: AppRoute.path,
     routes: $appRoutes,
-    //redirect: notifier.redirect,
+    errorBuilder: (context, state) => const NotFoundPage(),
   );
 }
 

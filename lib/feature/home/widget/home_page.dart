@@ -1,9 +1,11 @@
 import 'dart:html';
 
+import 'package:bintango_indonesian_translater/feature/home/model/side_menu.dart';
 import 'package:bintango_indonesian_translater/feature/home/provider/translate_provider.dart';
 import 'package:bintango_indonesian_translater/feature/home/widget/word_detail_card.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
+import 'package:bintango_indonesian_translater/shared/route/app_router.dart';
 import 'package:bintango_indonesian_translater/shared/util/analytics/analytics_parameters.dart';
 import 'package:bintango_indonesian_translater/shared/util/analytics/firebase_analytics.dart';
 import 'package:bintango_indonesian_translater/shared/util/open_url.dart';
@@ -54,11 +56,22 @@ class _HomePageState extends ConsumerState<HomePage> {
           title: Row(
             children: [
               const SizedBox(width: 8,),
-              Assets.image.bintangoLogo256.image(height:
-                ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
-              const SizedBox(width: 16,),
-              Assets.image.bintangoTranslateLogo.image(height:
-                ResponsiveBreakpoints.of(context).largerThan(MOBILE) ? 80 : 48,),
+              InkWell(
+                child: Row(
+                  children: [
+                    Assets.image.bintangoLogo256.image(height:
+                    ResponsiveBreakpoints.of(context)
+                        .largerThan(MOBILE) ? 80 : 48,),
+                    const SizedBox(width: 16,),
+                    Assets.image.bintangoTranslateLogo.image(height:
+                    ResponsiveBreakpoints.of(context)
+                        .largerThan(MOBILE) ? 80 : 48,),
+                  ],
+                ),
+                onTap: () {
+                  ref.read(routerProvider).go(AppRoute.path);
+                },
+              )
             ],
           ),
           actions: ResponsiveBreakpoints.of(context).largerThan(MOBILE) ?
@@ -335,14 +348,4 @@ class _HomePageState extends ConsumerState<HomePage> {
       return 1;
     }
   }
-}
-
-enum SideMenu {
-  bintango(title: 'BINTANGOについて', url: 'https://jogjalanjalan.com/bintango-guidance/'),
-  developerInfo(title: '開発者情報', url: 'https://linktr.ee/TeppeiKikuchi');
-
-  final String title;
-  final String url;
-
-  const SideMenu({required this.title, required this.url});
 }

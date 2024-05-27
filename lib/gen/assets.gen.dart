@@ -44,6 +44,9 @@ class $AssetsImageGen {
   AssetGenImage get example64 =>
       const AssetGenImage('assets/image/example_64.png');
 
+  /// File path: assets/image/home_128.png
+  AssetGenImage get home128 => const AssetGenImage('assets/image/home_128.png');
+
   /// File path: assets/image/indonesia_64.png
   AssetGenImage get indonesia64 =>
       const AssetGenImage('assets/image/indonesia_64.png');
@@ -69,6 +72,7 @@ class $AssetsImageGen {
         bintangoLogo256,
         english64,
         example64,
+        home128,
         indonesia64,
         infoNotes,
         japan64,
@@ -87,6 +91,16 @@ class $AssetsLangGen {
   List<String> get values => [en];
 }
 
+class $AssetsLottieGen {
+  const $AssetsLottieGen();
+
+  /// File path: assets/lottie/not_found_404.json
+  String get notFound404 => 'assets/lottie/not_found_404.json';
+
+  /// List of all assets
+  List<String> get values => [notFound404];
+}
+
 class Assets {
   Assets._();
 
@@ -94,6 +108,7 @@ class Assets {
   static const $AssetsEnvGen env = $AssetsEnvGen();
   static const $AssetsImageGen image = $AssetsImageGen();
   static const $AssetsLangGen lang = $AssetsLangGen();
+  static const $AssetsLottieGen lottie = $AssetsLottieGen();
 
   /// List of all assets
   static List<AssetGenImage> get values => [appLogo];
