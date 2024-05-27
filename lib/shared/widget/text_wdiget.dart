@@ -14,8 +14,22 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.primaryRed900,
-            fontSize: 14
+            fontSize: 14,
         ),
+      ),
+    );
+  }
+
+  static Widget titleRedMediumNotSelectable(String data, {int maxLines = 1}) {
+    return AutoSizeText(
+      data,
+      maxLines: maxLines,
+      minFontSize: 11,
+      maxFontSize: 16,
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        color: ColorConstants.primaryRed900,
+        fontSize: 14,
       ),
     );
   }
@@ -64,6 +78,20 @@ class TextWidget {
             color: ColorConstants.fontBlack,
             fontSize: 28
         ),
+      ),
+    );
+  }
+
+  static Widget titleBlackLargestBoldNotSelectable(String data, {int maxLines = 1}) {
+    return AutoSizeText(
+      data,
+      maxLines: maxLines,
+      minFontSize: 20,
+      maxFontSize: 28,
+      style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.fontBlack,
+          fontSize: 28
       ),
     );
   }

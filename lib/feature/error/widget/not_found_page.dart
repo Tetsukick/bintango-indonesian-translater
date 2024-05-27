@@ -92,7 +92,7 @@ class NotFoundPage extends ConsumerWidget {
               'assets/lottie/not_found_404.json',
               height: MediaQuery.of(context).size.height / 2
             ),
-            TextWidget.titleBlackLargestBold('Page Not Found'),
+            TextWidget.titleBlackLargestBoldNotSelectable('Page Not Found'),
             const SizedBox(height: 8,),
             _button(
                 onPressed: () {
@@ -125,7 +125,7 @@ class NotFoundPage extends ConsumerWidget {
           children: [
             img.image(height: 20, width: 20),
             const SizedBox(width: 8),
-            Expanded(child: TextWidget.titleRedMedium(title))
+            Expanded(child: TextWidget.titleRedMediumNotSelectable(title)),
           ],
         ),
       ),
