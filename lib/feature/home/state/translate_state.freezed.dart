@@ -18,6 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TranslateState {
   bool get isLoading => throw _privateConstructorUsedError;
   set isLoading(bool value) => throw _privateConstructorUsedError;
+  bool get isLoadingGrammarExplanation => throw _privateConstructorUsedError;
+  set isLoadingGrammarExplanation(bool value) =>
+      throw _privateConstructorUsedError;
+  bool get isLoadingWordList => throw _privateConstructorUsedError;
+  set isLoadingWordList(bool value) => throw _privateConstructorUsedError;
   bool get isLanguageSourceJapanese => throw _privateConstructorUsedError;
   set isLanguageSourceJapanese(bool value) =>
       throw _privateConstructorUsedError;
@@ -48,6 +53,8 @@ abstract class $TranslateStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
+      bool isLoadingGrammarExplanation,
+      bool isLoadingWordList,
       bool isLanguageSourceJapanese,
       String inputtedText,
       TranslateResponse? translateResponse,
@@ -72,6 +79,8 @@ class _$TranslateStateCopyWithImpl<$Res, $Val extends TranslateState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isLoadingGrammarExplanation = null,
+    Object? isLoadingWordList = null,
     Object? isLanguageSourceJapanese = null,
     Object? inputtedText = null,
     Object? translateResponse = freezed,
@@ -82,6 +91,14 @@ class _$TranslateStateCopyWithImpl<$Res, $Val extends TranslateState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingGrammarExplanation: null == isLoadingGrammarExplanation
+          ? _value.isLoadingGrammarExplanation
+          : isLoadingGrammarExplanation // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingWordList: null == isLoadingWordList
+          ? _value.isLoadingWordList
+          : isLoadingWordList // ignore: cast_nullable_to_non_nullable
               as bool,
       isLanguageSourceJapanese: null == isLanguageSourceJapanese
           ? _value.isLanguageSourceJapanese
@@ -143,6 +160,8 @@ abstract class _$$TranslateStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
+      bool isLoadingGrammarExplanation,
+      bool isLoadingWordList,
       bool isLanguageSourceJapanese,
       String inputtedText,
       TranslateResponse? translateResponse,
@@ -167,6 +186,8 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isLoadingGrammarExplanation = null,
+    Object? isLoadingWordList = null,
     Object? isLanguageSourceJapanese = null,
     Object? inputtedText = null,
     Object? translateResponse = freezed,
@@ -177,6 +198,14 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingGrammarExplanation: null == isLoadingGrammarExplanation
+          ? _value.isLoadingGrammarExplanation
+          : isLoadingGrammarExplanation // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingWordList: null == isLoadingWordList
+          ? _value.isLoadingWordList
+          : isLoadingWordList // ignore: cast_nullable_to_non_nullable
               as bool,
       isLanguageSourceJapanese: null == isLanguageSourceJapanese
           ? _value.isLanguageSourceJapanese
@@ -207,6 +236,8 @@ class __$$TranslateStateImplCopyWithImpl<$Res>
 class _$TranslateStateImpl implements _TranslateState {
   _$TranslateStateImpl(
       {this.isLoading = false,
+      this.isLoadingGrammarExplanation = false,
+      this.isLoadingWordList = false,
       this.isLanguageSourceJapanese = false,
       this.inputtedText = '',
       this.translateResponse,
@@ -216,6 +247,12 @@ class _$TranslateStateImpl implements _TranslateState {
   @override
   @JsonKey()
   bool isLoading;
+  @override
+  @JsonKey()
+  bool isLoadingGrammarExplanation;
+  @override
+  @JsonKey()
+  bool isLoadingWordList;
   @override
   @JsonKey()
   bool isLanguageSourceJapanese;
@@ -232,7 +269,7 @@ class _$TranslateStateImpl implements _TranslateState {
 
   @override
   String toString() {
-    return 'TranslateState(isLoading: $isLoading, isLanguageSourceJapanese: $isLanguageSourceJapanese, inputtedText: $inputtedText, translateResponse: $translateResponse, getDetailExplanationResponse: $getDetailExplanationResponse, includedWords: $includedWords)';
+    return 'TranslateState(isLoading: $isLoading, isLoadingGrammarExplanation: $isLoadingGrammarExplanation, isLoadingWordList: $isLoadingWordList, isLanguageSourceJapanese: $isLanguageSourceJapanese, inputtedText: $inputtedText, translateResponse: $translateResponse, getDetailExplanationResponse: $getDetailExplanationResponse, includedWords: $includedWords)';
   }
 
   @JsonKey(ignore: true)
@@ -246,6 +283,8 @@ class _$TranslateStateImpl implements _TranslateState {
 abstract class _TranslateState implements TranslateState {
   factory _TranslateState(
       {bool isLoading,
+      bool isLoadingGrammarExplanation,
+      bool isLoadingWordList,
       bool isLanguageSourceJapanese,
       String inputtedText,
       TranslateResponse? translateResponse,
@@ -255,6 +294,12 @@ abstract class _TranslateState implements TranslateState {
   @override
   bool get isLoading;
   set isLoading(bool value);
+  @override
+  bool get isLoadingGrammarExplanation;
+  set isLoadingGrammarExplanation(bool value);
+  @override
+  bool get isLoadingWordList;
+  set isLoadingWordList(bool value);
   @override
   bool get isLanguageSourceJapanese;
   set isLanguageSourceJapanese(bool value);

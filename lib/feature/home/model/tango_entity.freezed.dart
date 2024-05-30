@@ -24,13 +24,13 @@ mixin _$TangoEntity {
   String get indonesian => throw _privateConstructorUsedError;
   String get japanese => throw _privateConstructorUsedError;
   String get english => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
   String? get example => throw _privateConstructorUsedError;
   @JsonKey(name: 'example_jp')
   String? get exampleJp => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
   @JsonKey(name: 'part_of_speech')
   int get partOfSpeech => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   int? get category => throw _privateConstructorUsedError;
   int? get frequency => throw _privateConstructorUsedError;
   @JsonKey(name: 'ranking_frequency')
@@ -53,11 +53,11 @@ abstract class $TangoEntityCopyWith<$Res> {
       String indonesian,
       String japanese,
       String english,
-      String? description,
       String? example,
       @JsonKey(name: 'example_jp') String? exampleJp,
       int level,
       @JsonKey(name: 'part_of_speech') int partOfSpeech,
+      String? description,
       int? category,
       int? frequency,
       @JsonKey(name: 'ranking_frequency') int? rankFrequency});
@@ -80,11 +80,11 @@ class _$TangoEntityCopyWithImpl<$Res, $Val extends TangoEntity>
     Object? indonesian = null,
     Object? japanese = null,
     Object? english = null,
-    Object? description = freezed,
     Object? example = freezed,
     Object? exampleJp = freezed,
     Object? level = null,
     Object? partOfSpeech = null,
+    Object? description = freezed,
     Object? category = freezed,
     Object? frequency = freezed,
     Object? rankFrequency = freezed,
@@ -106,10 +106,6 @@ class _$TangoEntityCopyWithImpl<$Res, $Val extends TangoEntity>
           ? _value.english
           : english // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       example: freezed == example
           ? _value.example
           : example // ignore: cast_nullable_to_non_nullable
@@ -126,6 +122,10 @@ class _$TangoEntityCopyWithImpl<$Res, $Val extends TangoEntity>
           ? _value.partOfSpeech
           : partOfSpeech // ignore: cast_nullable_to_non_nullable
               as int,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -155,11 +155,11 @@ abstract class _$$TangoEntityImplCopyWith<$Res>
       String indonesian,
       String japanese,
       String english,
-      String? description,
       String? example,
       @JsonKey(name: 'example_jp') String? exampleJp,
       int level,
       @JsonKey(name: 'part_of_speech') int partOfSpeech,
+      String? description,
       int? category,
       int? frequency,
       @JsonKey(name: 'ranking_frequency') int? rankFrequency});
@@ -180,11 +180,11 @@ class __$$TangoEntityImplCopyWithImpl<$Res>
     Object? indonesian = null,
     Object? japanese = null,
     Object? english = null,
-    Object? description = freezed,
     Object? example = freezed,
     Object? exampleJp = freezed,
     Object? level = null,
     Object? partOfSpeech = null,
+    Object? description = freezed,
     Object? category = freezed,
     Object? frequency = freezed,
     Object? rankFrequency = freezed,
@@ -206,10 +206,6 @@ class __$$TangoEntityImplCopyWithImpl<$Res>
           ? _value.english
           : english // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       example: freezed == example
           ? _value.example
           : example // ignore: cast_nullable_to_non_nullable
@@ -226,6 +222,10 @@ class __$$TangoEntityImplCopyWithImpl<$Res>
           ? _value.partOfSpeech
           : partOfSpeech // ignore: cast_nullable_to_non_nullable
               as int,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -250,11 +250,11 @@ class _$TangoEntityImpl implements _TangoEntity {
       required this.indonesian,
       required this.japanese,
       required this.english,
-      this.description,
       required this.example,
       @JsonKey(name: 'example_jp') required this.exampleJp,
       required this.level,
       @JsonKey(name: 'part_of_speech') required this.partOfSpeech,
+      this.description,
       this.category,
       this.frequency,
       @JsonKey(name: 'ranking_frequency') this.rankFrequency});
@@ -271,8 +271,6 @@ class _$TangoEntityImpl implements _TangoEntity {
   @override
   final String english;
   @override
-  final String? description;
-  @override
   final String? example;
   @override
   @JsonKey(name: 'example_jp')
@@ -283,6 +281,8 @@ class _$TangoEntityImpl implements _TangoEntity {
   @JsonKey(name: 'part_of_speech')
   final int partOfSpeech;
   @override
+  final String? description;
+  @override
   final int? category;
   @override
   final int? frequency;
@@ -292,7 +292,7 @@ class _$TangoEntityImpl implements _TangoEntity {
 
   @override
   String toString() {
-    return 'TangoEntity(id: $id, indonesian: $indonesian, japanese: $japanese, english: $english, description: $description, example: $example, exampleJp: $exampleJp, level: $level, partOfSpeech: $partOfSpeech, category: $category, frequency: $frequency, rankFrequency: $rankFrequency)';
+    return 'TangoEntity(id: $id, indonesian: $indonesian, japanese: $japanese, english: $english, example: $example, exampleJp: $exampleJp, level: $level, partOfSpeech: $partOfSpeech, description: $description, category: $category, frequency: $frequency, rankFrequency: $rankFrequency)';
   }
 
   @override
@@ -306,14 +306,14 @@ class _$TangoEntityImpl implements _TangoEntity {
             (identical(other.japanese, japanese) ||
                 other.japanese == japanese) &&
             (identical(other.english, english) || other.english == english) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.example, example) || other.example == example) &&
             (identical(other.exampleJp, exampleJp) ||
                 other.exampleJp == exampleJp) &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.partOfSpeech, partOfSpeech) ||
                 other.partOfSpeech == partOfSpeech) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.frequency, frequency) ||
@@ -330,11 +330,11 @@ class _$TangoEntityImpl implements _TangoEntity {
       indonesian,
       japanese,
       english,
-      description,
       example,
       exampleJp,
       level,
       partOfSpeech,
+      description,
       category,
       frequency,
       rankFrequency);
@@ -359,11 +359,11 @@ abstract class _TangoEntity implements TangoEntity {
           required final String indonesian,
           required final String japanese,
           required final String english,
-          final String? description,
           required final String? example,
           @JsonKey(name: 'example_jp') required final String? exampleJp,
           required final int level,
           @JsonKey(name: 'part_of_speech') required final int partOfSpeech,
+          final String? description,
           final int? category,
           final int? frequency,
           @JsonKey(name: 'ranking_frequency') final int? rankFrequency}) =
@@ -381,8 +381,6 @@ abstract class _TangoEntity implements TangoEntity {
   @override
   String get english;
   @override
-  String? get description;
-  @override
   String? get example;
   @override
   @JsonKey(name: 'example_jp')
@@ -392,6 +390,8 @@ abstract class _TangoEntity implements TangoEntity {
   @override
   @JsonKey(name: 'part_of_speech')
   int get partOfSpeech;
+  @override
+  String? get description;
   @override
   int? get category;
   @override

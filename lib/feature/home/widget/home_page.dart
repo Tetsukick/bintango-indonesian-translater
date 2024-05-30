@@ -332,9 +332,13 @@ class _HomePageState extends ConsumerState<HomePage> {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       padding: const EdgeInsets.all(16),
-      itemCount: state.includedWords.length,
+      itemCount: state.isLoadingWordList && state.includedWords.isEmpty
+          ? 4 : state.includedWords.length,
       itemBuilder: (context, index) {
-        return WordDetailCard(entity: state.includedWords[index]);
+        return WordDetailCard(
+            entity: state.includedWords.isEmpty
+                ? null : state.includedWords[index],
+        );
       },
     );
   }

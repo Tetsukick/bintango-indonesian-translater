@@ -1,20 +1,79 @@
 import 'package:bintango_indonesian_translater/feature/home/model/part_of_speech.dart';
 import 'package:bintango_indonesian_translater/feature/home/model/tango_entity.dart';
+import 'package:bintango_indonesian_translater/feature/home/provider/translate_provider.dart';
 import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
+import 'package:bintango_indonesian_translater/shared/util/animation.dart';
+import 'package:bintango_indonesian_translater/shared/widget/skeleton.dart';
 import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WordDetailCard extends StatelessWidget {
+class WordDetailCard extends ConsumerWidget {
   const WordDetailCard({required this.entity, super.key});
 
   final _iconHeight = 20.0;
   final _iconWidth = 20.0;
 
-  final TangoEntity entity;
+  final TangoEntity? entity;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(translateNotifierProvider);
+
+    if (state.isLoadingWordList) {
+      if (entity == null) {
+        return shimmerWordCard();
+      } else {
+        return wordCard(entity!).shimmer;
+      }
+    } else {
+      return wordCard(entity!).amShimmer;
+    }
+  }
+
+  Widget shimmerWordCard() {
+    return Card(
+      child: SizedBox(
+        width: 150,
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const RoundedSkeleton(
+                width: 72,
+                height: 24,
+                color: ColorConstants.primaryRed900,
+              ).shimmer,
+              const SizedBox(height: 8),
+              const Skeleton(width: 88, height: 32,).shimmer,
+              const SizedBox(height: 4),
+              _separater().shimmer,
+              const Skeleton(width: 96, height: 28,).shimmer,
+              const SizedBox(height: 8),
+              const Skeleton(width: 88, height: 28,).shimmer,
+              const SizedBox(height: 8),
+              _separater().shimmer,
+              const SizedBox(height: 8),
+              const Skeleton(width: 128, height: 28,).shimmer,
+              const SizedBox(height: 8),
+              const Skeleton(width: 128, height: 28,).shimmer,
+              const SizedBox(height: 8),
+              _separater().shimmer,
+              const SizedBox(height: 8),
+              const Skeleton(width: 128, height: 18,).shimmer,
+              const SizedBox(height: 4),
+              const Skeleton(width: 106, height: 18,).shimmer,
+              const SizedBox(height: 8)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget wordCard(TangoEntity entity) {
     return Card(
       child: SizedBox(
         width: 150,
