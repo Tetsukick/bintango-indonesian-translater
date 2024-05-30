@@ -1,6 +1,5 @@
 import 'package:bintango_indonesian_translater/shared/route/app_router.dart';
 import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void snackbarSuccess(
@@ -12,7 +11,7 @@ void snackbarSuccess(
     padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
     width: 450,
     content: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Row(
         children: [
           const Icon(
@@ -20,7 +19,7 @@ void snackbarSuccess(
             color: Colors.green,
           ),
           const SizedBox(width: 8,),
-          Flexible(child: TextWidget.titleGrayMediumSmallBold(message, maxLines: 3))
+          Flexible(child: TextWidget.titleGrayMediumSmallBold(message, maxLines: 3)),
         ],
       ),
     ),

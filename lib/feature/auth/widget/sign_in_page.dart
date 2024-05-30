@@ -5,10 +5,10 @@ import 'package:bintango_indonesian_translater/feature/auth/provider/auth_provid
 import 'package:bintango_indonesian_translater/shared/route/app_router.dart';
 
 class SignInPage extends ConsumerWidget {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
 
   SignInPage({super.key});
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +18,7 @@ class SignInPage extends ConsumerWidget {
             child: Column(children: <Widget>[
               const SizedBox(height: 150),
               Text(
-                "sign_in".tr(),
+                'sign_in'.tr(),
                 style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.bold,
@@ -30,13 +30,13 @@ class SignInPage extends ConsumerWidget {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: "email".tr(),
+                        labelText: 'email'.tr(),
                       ),
                       controller: _emailController,
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: "password".tr(),
+                        labelText: 'password'.tr(),
                       ),
                       controller: _passwordController,
                       obscureText: true,
@@ -48,11 +48,11 @@ class SignInPage extends ConsumerWidget {
                           _widgetSignInButton(context, ref),
                           const SizedBox(height: 30),
                           _widgetSignUpButton(context, ref),
-                        ]),
+                        ],),
                   ],
                 ),
-              )
-            ])));
+              ),
+            ],),),);
   }
 
   Widget _widgetSignInButton(BuildContext context, WidgetRef ref) {
@@ -64,8 +64,8 @@ class SignInPage extends ConsumerWidget {
                 .read(authNotifierProvider.notifier)
                 .login(_emailController.text, _passwordController.text);
           },
-          child: Text("sign_in".tr()),
-        ));
+          child: Text('sign_in'.tr()),
+        ),);
   }
 
   Widget _widgetSignUpButton(BuildContext context, WidgetRef ref) {
@@ -75,7 +75,7 @@ class SignInPage extends ConsumerWidget {
           onPressed: () {
             ref.read(routerProvider).go(SignUpRoute.path);
           },
-          child: Text("sign_up".tr()),
-        ));
+          child: Text('sign_up'.tr()),
+        ),);
   }
 }

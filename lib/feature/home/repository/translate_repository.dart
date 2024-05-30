@@ -35,13 +35,13 @@ class TranslateRepository implements TranslateRepositoryProtocol {
       : 'インドネシア語の例文「$text」を日本語に翻訳してください。（文体：ですます調、表現方法：教科書のような違和感のない優しい丁寧な日本語表現';
 
     final queryParams = {
-      'key': dotenv.env['GEMINI_API_KEY']
+      'key': dotenv.env['GEMINI_API_KEY'],
     };
     final body =
     {
       'contents': [
-        {'role': 'user', 'parts': { 'text': prompt }}
-      ]
+        {'role': 'user', 'parts': { 'text': prompt }},
+      ],
     };
 
     final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
@@ -57,12 +57,12 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     if (response is APISuccess) {
       final value = response.value as Map<String, dynamic>;
       try {
-        final _result = TranslateResponse(
+        final result = TranslateResponse(
           code: 200,
-          text: value['candidates'][0]['content']['parts'][0]['text'] as String
+          text: value['candidates'][0]['content']['parts'][0]['text'] as String,
         );
 
-        return _result;
+        return result;
       } catch (e) {
         throw Exception(e);
       }
@@ -81,13 +81,13 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     'インドネシア語の例文「$text」の意味と文法を日本語で解説してください。（文体：ですます調、表現方法：教科書のような違和感のない優しい丁寧な日本語表現, テキスト形式: マークダウン形式)';
 
     final queryParams = {
-      'key': dotenv.env['GEMINI_API_KEY']
+      'key': dotenv.env['GEMINI_API_KEY'],
     };
     final body =
     {
       'contents': [
-        {'role': 'user', 'parts': { 'text': prompt }}
-      ]
+        {'role': 'user', 'parts': { 'text': prompt }},
+      ],
     };
 
     final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
@@ -103,12 +103,12 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     if (response is APISuccess) {
       final value = response.value as Map<String, dynamic>;
       try {
-        final _result = TranslateResponse(
+        final result = TranslateResponse(
             code: 200,
-            text: value['candidates'][0]['content']['parts'][0]['text'] as String
+            text: value['candidates'][0]['content']['parts'][0]['text'] as String,
         );
 
-        return _result;
+        return result;
       } catch (e) {
         throw Exception(e);
       }

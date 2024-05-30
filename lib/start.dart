@@ -10,8 +10,8 @@ import 'package:bintango_indonesian_translater/shared/util/logger.dart';
 import 'package:bintango_indonesian_translater/shared/util/platform_type.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'app/app.dart';
-import 'firebase_options.dart';
+import 'package:bintango_indonesian_translater/app/app.dart';
+import 'package:bintango_indonesian_translater/firebase_options.dart';
 
 Future<void> start() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +39,7 @@ Future<void> start() async {
     child: ProviderScope(overrides: [
       platformTypeProvider.overrideWithValue(platformType),
     ], observers: [
-      Logger()
-    ], child: const App()),
-  ));
+      Logger(),
+    ], child: const App(),),
+  ),);
 }

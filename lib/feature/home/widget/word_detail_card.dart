@@ -6,7 +6,7 @@ import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
 import 'package:flutter/material.dart';
 
 class WordDetailCard extends StatelessWidget {
-  WordDetailCard({required this.entity, Key? key}) : super(key: key);
+  const WordDetailCard({required this.entity, super.key});
 
   final _iconHeight = 20.0;
   final _iconWidth = 20.0;
@@ -95,7 +95,7 @@ class WordDetailCard extends StatelessWidget {
       children: [
         TextWidget.titleRedMedium('例文'),
         const SizedBox(width: 12),
-        Flexible(child: _separater())
+        Flexible(child: _separater()),
       ],
     );
   }

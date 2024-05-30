@@ -4,7 +4,7 @@ enum type { None, Alphabetic, Numeric, AlphaNumeric }
 
 class EmailValidator {
   static int _index = 0;
-  static const String _atomCharacters = "!#\$%&'*+-/=?^_`{|}~";
+  static const String _atomCharacters = r"!#$%&'*+-/=?^_`{|}~";
   static type _domainType = type.None;
 
   static bool _isDigit(String c) {
@@ -110,7 +110,7 @@ class EmailValidator {
   }
 
   static bool _skipDomain(
-      String text, bool allowTopLevelDomains, bool allowInternational) {
+      String text, bool allowTopLevelDomains, bool allowInternational,) {
     if (!_skipSubDomain(text, allowInternational)) {
       return false;
     }
@@ -150,7 +150,7 @@ class EmailValidator {
         return false;
       }
 
-      if (text[_index] == '\\') {
+      if (text[_index] == r'\') {
         escaped = !escaped;
       } else if (!escaped) {
         if (text[_index] == '"') {
@@ -297,7 +297,7 @@ class EmailValidator {
   ///
   /// Throws an [ArgumentError] if the email is null.
   static bool validate(String? email,
-      [bool allowTopLevelDomains = false, bool allowInternational = true]) {
+      [bool allowTopLevelDomains = false, bool allowInternational = true,]) {
     _index = 0;
 
     if (email == null) {

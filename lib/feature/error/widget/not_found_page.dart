@@ -38,7 +38,7 @@ class NotFoundPage extends ConsumerWidget {
               onTap: () {
                 ref.read(routerProvider).go(AppRoute.path);
               },
-            )
+            ),
           ],
         ),
         actions: ResponsiveBreakpoints.of(context).largerThan(MOBILE) ?
@@ -66,7 +66,7 @@ class NotFoundPage extends ConsumerWidget {
                 launch(SideMenu.developerInfo.url);
               },
               child: TextWidget.titleGraySmallBoldNotSelectable(
-                  SideMenu.developerInfo.title),
+                  SideMenu.developerInfo.title,),
             ),
           ),
           const SizedBox(width: 4,),
@@ -90,7 +90,7 @@ class NotFoundPage extends ConsumerWidget {
           children: [
             Lottie.asset(
               'assets/lottie/not_found_404.json',
-              height: MediaQuery.of(context).size.height / 2
+              height: MediaQuery.of(context).size.height / 2,
             ),
             TextWidget.titleBlackLargestBoldNotSelectable('Page Not Found'),
             const SizedBox(height: 8,),
@@ -99,7 +99,7 @@ class NotFoundPage extends ConsumerWidget {
                   ref.read(routerProvider).go(AppRoute.path);
                 },
                 img: Assets.image.home128,
-                title: 'トップに戻る'
+                title: 'トップに戻る',
             ),
           ],
         ),

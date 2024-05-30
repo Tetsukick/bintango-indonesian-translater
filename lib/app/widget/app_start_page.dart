@@ -9,7 +9,7 @@ import 'package:bintango_indonesian_translater/shared/widget/connection_unavaila
 import 'package:bintango_indonesian_translater/shared/widget/loading_widget.dart';
 
 class AppStartPage extends ConsumerWidget {
-  const AppStartPage({Key? key}) : super(key: key);
+  const AppStartPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,6 +29,6 @@ class AppStartPage extends ConsumerWidget {
           log('router error: $e, $st');
           return const LoadingWidget();
         },
-        loading: () => const LoadingWidget());
+        loading: () => const LoadingWidget(),);
   }
 }

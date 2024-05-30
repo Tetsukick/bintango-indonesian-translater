@@ -11,7 +11,7 @@ class App extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
-      title: "BINTANGO Translate | AIでインドネシア語翻訳と同時に一括単語検索",
+      title: 'BINTANGO Translate | AIでインドネシア語翻訳と同時に一括単語検索',
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),

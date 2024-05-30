@@ -25,14 +25,14 @@ class BooksRepository implements BooksRepositoryProtocol {
         success: (success) {},
         error: (error) {
           return BooksState.error(error);
-        });
+        },);
 
     if (response is APISuccess) {
       final value = response.value;
       try {
-        final _books = booksFromJson(value as List<dynamic>);
+        final books = booksFromJson(value as List<dynamic>);
 
-        return BooksState.booksLoaded(_books);
+        return BooksState.booksLoaded(books);
       } catch (e) {
         return BooksState.error(AppException.errorWithMessage(e.toString()));
       }

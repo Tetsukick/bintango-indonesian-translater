@@ -52,19 +52,19 @@ class TranslateNotifier extends _$TranslateNotifier {
     state = state.copyWith();
     final response = await _translateProvider.translate(
         text: state.inputtedText,
-        isSourceJapanese: state.isLanguageSourceJapanese);
+        isSourceJapanese: state.isLanguageSourceJapanese,);
     state
       ..translateResponse = response
       ..isLoading = false;
     state = state.copyWith();
   }
 
-  Future<void> getDetailExplanation() async {;
+  Future<void> getDetailExplanation() async {
     if (state.translateResponse != null && state.translateResponse!.text.isNotEmpty) {
       final response = await _translateProvider.getDetailExplanation(
           text: state.isLanguageSourceJapanese
               ? state.translateResponse!.text : state.inputtedText,
-          isSourceJapanese: state.isLanguageSourceJapanese);
+          isSourceJapanese: state.isLanguageSourceJapanese,);
       state.getDetailExplanationResponse = response;
       state = state.copyWith();
     }

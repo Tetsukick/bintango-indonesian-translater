@@ -17,7 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'explanation_detail_card.dart';
+import 'package:bintango_indonesian_translater/feature/home/widget/explanation_detail_card.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -71,7 +71,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 onTap: () {
                   ref.read(routerProvider).go(AppRoute.path);
                 },
-              )
+              ),
             ],
           ),
           actions: ResponsiveBreakpoints.of(context).largerThan(MOBILE) ?
@@ -99,7 +99,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   launch(SideMenu.developerInfo.url);
                 },
                 child: TextWidget.titleGraySmallBoldNotSelectable(
-                    SideMenu.developerInfo.title),
+                    SideMenu.developerInfo.title,),
               ),
             ),
             const SizedBox(width: 4,),

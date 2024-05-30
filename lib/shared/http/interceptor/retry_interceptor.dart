@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:bintango_indonesian_translater/shared/http/interceptor/dio_connectivity_request_retrier.dart';
+import 'package:dio/dio.dart';
 
 class RetryOnConnectionChangeInterceptor extends Interceptor {
-  final DioConnectivityRequestRetrier requestRetrier;
 
   RetryOnConnectionChangeInterceptor({
     required this.requestRetrier,
   });
+  final DioConnectivityRequestRetrier requestRetrier;
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {

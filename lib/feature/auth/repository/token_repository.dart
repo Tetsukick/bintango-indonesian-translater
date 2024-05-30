@@ -1,8 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:developer';
+
 import 'package:bintango_indonesian_translater/feature/auth/model/token.dart';
 import 'package:bintango_indonesian_translater/shared/constants/store_key.dart';
 import 'package:bintango_indonesian_translater/shared/util/platform_type.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class TokenRepositoryProtocol {
@@ -33,7 +35,9 @@ class TokenRepository implements TokenRepositoryProtocol {
       const storage = FlutterSecureStorage();
       try {
         await storage.delete(key: StoreKey.token.toString());
-      } on Exception catch (e) {}
+      } on Exception catch (e) {
+        log(e.toString());
+      }
     } else {
       await prefs.remove(StoreKey.token.toString());
     }
@@ -52,7 +56,9 @@ class TokenRepository implements TokenRepositoryProtocol {
       try {
         await storage.write(
             key: StoreKey.token.toString(), value: tokenToJson(token));
-      } on Exception catch (e) {}
+      } on Exception catch (e) {
+        log(e.toString());
+      }
     } else {
       await prefs.setString(StoreKey.token.toString(), tokenToJson(token));
     }
@@ -80,6 +86,7 @@ class TokenRepository implements TokenRepositoryProtocol {
         _token = tokenFromJson(tokenValue);
       }
     } on Exception catch (e) {
+      log(e.toString());
       return _token;
     }
 
