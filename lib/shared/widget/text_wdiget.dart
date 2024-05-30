@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TextWidget {
@@ -44,7 +43,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.primaryRed900,
-            fontSize: 32
+            fontSize: 32,
         ),
       ),
     );
@@ -60,7 +59,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontBlack,
-            fontSize: 24
+            fontSize: 24,
         ),
       ),
     );
@@ -76,7 +75,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontBlack,
-            fontSize: 28
+            fontSize: 28,
         ),
       ),
     );
@@ -91,7 +90,7 @@ class TextWidget {
       style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: ColorConstants.fontBlack,
-          fontSize: 28
+          fontSize: 28,
       ),
     );
   }
@@ -106,7 +105,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontBlack,
-            fontSize: 18
+            fontSize: 18,
         ),
       ),
     );
@@ -122,7 +121,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontBlack,
-            fontSize: 12
+            fontSize: 12,
         ),
       ),
     );
@@ -138,7 +137,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontGrey,
-            fontSize: 20
+            fontSize: 20,
         ),
       ),
     );
@@ -154,7 +153,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontGrey,
-            fontSize: 20
+            fontSize: 20,
         ),
       ),
     );
@@ -170,7 +169,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.normal,
             color: ColorConstants.fontGrey,
-            fontSize: 18
+            fontSize: 18,
         ),
       ),
     );
@@ -186,7 +185,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontGrey,
-            fontSize: 18
+            fontSize: 18,
         ),
       ),
     );
@@ -206,7 +205,7 @@ class TextWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: ColorConstants.fontGrey,
-            fontSize: 14
+            fontSize: 14,
         ),
       ),
     );
@@ -224,7 +223,7 @@ class TextWidget {
       style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: ColorConstants.fontGrey,
-          fontSize: 14
+          fontSize: 14,
       ),
     );
   }
@@ -238,7 +237,7 @@ class TextWidget {
         maxFontSize: 12,
         style: const TextStyle(
             color: ColorConstants.fontGrey,
-            fontSize: 12
+            fontSize: 12,
         ),
       ),
     );
@@ -253,7 +252,7 @@ class TextWidget {
         maxFontSize: 16,
         style: const TextStyle(
             color: ColorConstants.fontGrey,
-            fontSize: 14
+            fontSize: 14,
         ),
       ),
     );

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 class WaitableElevatedButton extends StatefulWidget {
 
-  WaitableElevatedButton({
+  const WaitableElevatedButton({
     required this.onPressed,
     required this.child,
     this.style,
     super.key,
   });
   @override
-  createState() => _WaitableElevatedButtonState();
+  _WaitableElevatedButtonState createState() => _WaitableElevatedButtonState();
 
   final AsyncCallback? onPressed;
   final ButtonStyle? style;
@@ -38,14 +38,14 @@ class _WaitableElevatedButtonState extends State<WaitableElevatedButton> {
 
 class WaitableOutlinedButton extends StatefulWidget {
 
-  WaitableOutlinedButton({
+  const WaitableOutlinedButton({
     required this.onPressed,
     required this.child,
     this.style,
     super.key,
   });
   @override
-  createState() => _WaitableOutlinedButtonState();
+  _WaitableOutlinedButtonState createState() => _WaitableOutlinedButtonState();
 
   final AsyncCallback? onPressed;
   final ButtonStyle? style;

@@ -52,30 +52,38 @@ class TranslateNotifier extends _$TranslateNotifier {
     state = state.copyWith();
     final response = await _translateProvider.translate(
         text: state.inputtedText,
-        isSourceJapanese: state.isLanguageSourceJapanese);
+        isSourceJapanese: state.isLanguageSourceJapanese,);
     state
       ..translateResponse = response
       ..isLoading = false;
     state = state.copyWith();
   }
 
-  Future<void> getDetailExplanation() async {;
+  Future<void> getDetailExplanation() async {
+    state.isLoadingGrammarExplanation = true;
+    state = state.copyWith();
     if (state.translateResponse != null && state.translateResponse!.text.isNotEmpty) {
       final response = await _translateProvider.getDetailExplanation(
           text: state.isLanguageSourceJapanese
               ? state.translateResponse!.text : state.inputtedText,
-          isSourceJapanese: state.isLanguageSourceJapanese);
-      state.getDetailExplanationResponse = response;
+          isSourceJapanese: state.isLanguageSourceJapanese,);
+      state
+        ..getDetailExplanationResponse = response
+        ..isLoadingGrammarExplanation = false;
       state = state.copyWith();
     }
   }
 
   Future<void> searchIncludedWords() async {
+    state.isLoadingWordList = true;
+    state = state.copyWith();
     final includedWordList =
       await _translateProvider.searchIncludeWords(
           state.isLanguageSourceJapanese
               ? state.translateResponse?.text ?? '' : state.inputtedText,);
-    state.includedWords = includedWordList;
+    state
+      ..includedWords = includedWordList
+      ..isLoadingWordList = false;
     state = state.copyWith();
   }
 }

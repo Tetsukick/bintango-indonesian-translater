@@ -1,5 +1,4 @@
 import 'package:bintango_indonesian_translater/feature/home/model/translate_response.dart';
-import 'package:bintango_indonesian_translater/gen/assets.gen.dart';
 import 'package:bintango_indonesian_translater/shared/constants/color_constants.dart';
 import 'package:bintango_indonesian_translater/shared/widget/text_wdiget.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ExplanationDetailCard extends StatelessWidget {
-  ExplanationDetailCard({required this.data, Key? key}) : super(key: key);
+  const ExplanationDetailCard({required this.data, super.key});
 
   final _iconHeight = 20.0;
   final _iconWidth = 20.0;

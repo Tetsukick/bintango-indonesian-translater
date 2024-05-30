@@ -8,6 +8,8 @@ part 'translate_state.freezed.dart';
 class TranslateState with _$TranslateState {
   factory TranslateState({
     @Default(false) bool isLoading,
+    @Default(false) bool isLoadingGrammarExplanation,
+    @Default(false) bool isLoadingWordList,
     @Default(false) bool isLanguageSourceJapanese,
     @Default('') String inputtedText,
     TranslateResponse? translateResponse,

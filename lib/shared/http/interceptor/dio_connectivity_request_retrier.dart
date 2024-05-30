@@ -4,14 +4,14 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
 class DioConnectivityRequestRetrier {
-  final Dio dio;
-
-  final Connectivity connectivity;
 
   DioConnectivityRequestRetrier({
     required this.dio,
     required this.connectivity,
   });
+  final Dio dio;
+
+  final Connectivity connectivity;
 
   Future<Response> scheduleRequestRetry(RequestOptions requestOptions) async {
     late StreamSubscription streamSubscription;
@@ -44,7 +44,7 @@ class DioConnectivityRequestRetrier {
                   maxRedirects: requestOptions.maxRedirects,
                   requestEncoder: requestOptions.requestEncoder,
                   responseDecoder: requestOptions.responseDecoder,
-                  listFormat: requestOptions.listFormat),
+                  listFormat: requestOptions.listFormat,),
             ),
           );
         }
