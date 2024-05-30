@@ -58,6 +58,14 @@ lint: ## Lints the code
 	@echo "╠ Verifying code..."
 	@dart analyze . || (echo "Error in project"; exit 1)
 
+auto_fix_dry_run:
+	@echo "╠ Checking auto fix code..."
+	@dart fix --dry-run
+
+auto_fix_apply:
+	@echo "╠ Checking auto fix code..."
+	@dart fix --apply
+
 upgrade: clean ## Upgrades dependencies
 	@echo "╠ Upgrading dependencies..."
 	@flutter pub upgrade
