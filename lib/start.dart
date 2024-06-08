@@ -1,17 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:bintango_indonesian_translater/app/app.dart';
+import 'package:bintango_indonesian_translater/firebase_options.dart';
+import 'package:bintango_indonesian_translater/shared/util/logger.dart';
+import 'package:bintango_indonesian_translater/shared/util/platform_type.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:bintango_indonesian_translater/shared/util/logger.dart';
-import 'package:bintango_indonesian_translater/shared/util/platform_type.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'package:bintango_indonesian_translater/app/app.dart';
-import 'package:bintango_indonesian_translater/firebase_options.dart';
 
 Future<void> start() async {
   WidgetsFlutterBinding.ensureInitialized();

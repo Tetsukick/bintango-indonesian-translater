@@ -163,7 +163,7 @@ class TranslateRepository implements TranslateRepositoryProtocol {
     final searchWordJsonList = await Supabase.instance.client
         .from('words')
         .select()
-        .eq('indonesian', searchText);
+        .ilike('indonesian', searchText);
     final searchWordList =
       searchWordJsonList.map(TangoEntity.fromJson).toList();
     return searchWordList;
