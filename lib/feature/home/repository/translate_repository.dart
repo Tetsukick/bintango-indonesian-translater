@@ -44,7 +44,7 @@ class TranslateRepository implements TranslateRepositoryProtocol {
       ],
     };
 
-    final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
+    final response = await _api.post('/gemini-1.5-pro-latest:generateContent', json.encode(body) , query: queryParams,);
 
     response.when(
         success: (success) {
@@ -90,7 +90,7 @@ class TranslateRepository implements TranslateRepositoryProtocol {
       ],
     };
 
-    final response = await _api.post('/gemini-pro:generateContent', json.encode(body) , query: queryParams,);
+    final response = await _api.post('/gemini-1.5-pro-latest:generateContent', json.encode(body) , query: queryParams,);
 
     response.when(
       success: (success) {
